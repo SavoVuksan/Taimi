@@ -20,9 +20,10 @@ function createWindow() {
     x: 0,
     y: 0,
     width: 900,
-    height: 600
+    height: 600,
+    icon:'./src/assets/images/logo.png'
   });
-
+  //win.setMenu(null)
   // and load the index.html of the app.
   win.loadURL('file://' + __dirname + '/index.html');
 
