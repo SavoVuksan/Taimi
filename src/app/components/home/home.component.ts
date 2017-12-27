@@ -10,7 +10,9 @@ import {Observable} from 'rxjs/Rx';
 })
 export class HomeComponent implements OnInit {
 
+
   time: number;
+
 
   constructor(private _measureRunTimeService: MeasureRunTimeService) { }
 
@@ -20,6 +22,10 @@ export class HomeComponent implements OnInit {
       this.time = +this._measureRunTimeService.measureTime().toFixed(0);
     } );
 
+    let child_process = require('child_process');
+    child_process.exec('powershell -command "get-Process  | format-table mainwindowtitle"', function(error, stdout, stderr){
+      console.log(stdout);
+    });
   }
 
 
