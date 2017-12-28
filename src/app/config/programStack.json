@@ -1,0 +1,7 @@
+[
+  {"programName" : "Chrome","trackingOn" : true},
+  {"programName" : "Atom","trackingOn" : true},
+  {"programName" : "MEGASync","trackingOn" : true},
+  {"programName" : "git-cmd","trackingOn" : true},
+  {"programName" : "electron","trackingOn" : true}
+]
