@@ -22,6 +22,17 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.displayTime();
 
+    this._trackProgramsService.programStackJSON
+    .subscribe(stack => {
+      this._trackProgramsService.programStack = stack;
+
+      let timer = Observable.timer(0,3000);
+      timer.subscribe(t =>{
+        this._trackProgramsService.listenForPrograms();
+      });
+
+    });
+
     }
 
 

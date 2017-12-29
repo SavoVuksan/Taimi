@@ -1,7 +1,8 @@
 [
-  {"programName" : "Chrome","trackingOn" : true},
-  {"programName" : "Atom","trackingOn" : true},
-  {"programName" : "MEGASync","trackingOn" : true},
-  {"programName" : "git-cmd","trackingOn" : true},
-  {"programName" : "electron","trackingOn" : true}
+  {"programName" : "Chrome","trackingOn" : true, "alreadyUsedTime" : 0, "isRunning" : false},
+  {"programName" : "Atom","trackingOn" : true, "alreadyUsedTime" : 10, "isRunning" : false},
+  {"programName" : "MEGASync","trackingOn" : false, "alreadyUsedTime" : 0, "isRunning" : false},
+  {"programName" : "git-cmd","trackingOn" : false, "alreadyUsedTime" : 0, "isRunning" : false},
+  {"programName" : "electron","trackingOn" : false, "alreadyUsedTime" : 0, "isRunning" : false},
+  {"programName" : "blender","trackingOn" : true, "alreadyUsedTime" : 0, "isRunning" : false}
 ]
