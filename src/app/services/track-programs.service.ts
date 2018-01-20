@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TrackProgramsService {
-
+  //TODO loadFileData service einbinden und nutzen
   public programStack:ProgramStack[] = [];
   public programStackJSON;
   public runningPrograms:string; //NOTE Just a Test variable
@@ -40,7 +40,8 @@ export class TrackProgramsService {
             {
               program.programStartTime = new Date().getTime() / 1000;
               program.isRunning = true;
-
+              program.timeAlreadyRun = 0;
+              console.log(program.timeAlreadyRun);
             }else
             {
               program.timeUsedNow = (new Date().getTime() / 1000 - program.programStartTime) + program.alreadyUsedTime;

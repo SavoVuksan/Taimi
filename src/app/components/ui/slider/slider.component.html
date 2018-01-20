@@ -1,0 +1,9 @@
+<div class="sliderContainer" >
+  <div class="sliderBase"> </div>
+  <input (change)="sliderChange()" [(ngModel)]="sliderValue" type="range"
+  min="{{sliderMin}}" max="{{sliderMax}}" value="{{sliderValue}}" class="slider">
+  <div class="sliderFill" [ngStyle]="{'width':sliderFillWidth+'%'}"></div>
+  <div class="sliderBox" >
+    <p class="sliderBoxText" > {{sliderValue}}/{{sliderMax}}</p>
+  </div>
+</div>

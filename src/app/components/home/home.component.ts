@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {MeasureRunTimeService } from '../../services/measure-run-time.service';
 import {TrackProgramsService} from '../../services/track-programs.service';
 import {Observable} from 'rxjs/Rx';
@@ -17,9 +17,11 @@ export class HomeComponent implements OnInit {
   programs : String;
 
   constructor(private _measureRunTimeService: MeasureRunTimeService,
-    private _trackProgramsService: TrackProgramsService) { }
+    private _trackProgramsService: TrackProgramsService,
+    private router : Router) { }
 
   ngOnInit() {
+    this.router.navigateByUrl('/settings');
     this.displayTime();
 
     this._trackProgramsService.programStackJSON

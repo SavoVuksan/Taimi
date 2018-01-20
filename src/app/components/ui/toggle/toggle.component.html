@@ -1,0 +1,10 @@
+<div class="toggleContainer">
+  <div class="toggle" (click)="toggleChange()" [@toggleBase]="toggle">
+    <div class="toggleBall" [@toggleBall]="toggle">
+
+    </div>
+  </div>
+  <div class="toggleBox" [@toggleTextBox]="toggle">
+    <p class="toggleBoxText" [@toggleText]="toggle"> {{toggleText}}</p>
+  </div>
+</div>

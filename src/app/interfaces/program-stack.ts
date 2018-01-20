@@ -5,6 +5,6 @@ export interface ProgramStack {
   alreadyUsedTime : number; //Time Used this program in Hours  JSON
   timeUsedNow : number; //The Time used now
   programStartTime : number; //stores the starting time of the application
-
+  timeAlreadyRun : number; //Stores the time which the program alredy run in that session
 
 }

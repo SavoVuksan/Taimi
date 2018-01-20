@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col nav">
+      <app-navigator class="settingsNav"></app-navigator>
+      <h1 class="heading">SETTINGS</h1>
+    </div>
+  </div>
+  <div class="row fullHeight">
+    <div class="col settingsContainer">
+      <form #form="ngForm" (ngSubmit)="submit(form.value)" (change)=writeSettings()>
+        <h2>Hours per day</h2>
+        <app-slider name="hourSlider" [sliderMin]=MinHoursPerDay
+         [sliderMax]=MaxHoursPerDay [sliderValue]=settings.hoursPerDay
+         [(ngModel)]=settings.hoursPerDay > </app-slider>
+        <hr>
+
+        <h2>Hours per Week</h2>
+        <app-slider name="weekSlider" [sliderMin]=MinHoursPerWeek
+        [sliderMax]=MaxHoursPerWeek [sliderValue]=settings.hoursPerWeek
+        [(ngModel)]=settings.hoursPerWeek > </app-slider>
+        <hr>
+
+        <h2 >Notification</h2>
+        <app-toggle name="notificationToggle" [toggle]=settings.notificationsOn
+        [(ngModel)]=settings.notificationsOn></app-toggle>
+        <hr>
+
+        <h2>Lock PC</h2>
+        <app-toggle name="lockPCOnToggle" [toggle]=settings.lockPCOn
+        [(ngModel)]=settings.lockPCOn></app-toggle>
+      </form>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import 'zone.js/dist/zone-mix';
 import 'reflect-metadata';
 import 'polyfills';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,6 +19,10 @@ import { ElectronService } from './providers/electron.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { ToggleComponent } from './components/ui/toggle/toggle.component';
+import { SliderComponent } from './components/ui/slider/slider.component';
+import { NavigatorComponent } from './components/ui/navigator/navigator.component';
 
 
 
@@ -29,13 +34,18 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SettingsComponent,
+    ToggleComponent,
+    SliderComponent,
+    NavigatorComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
