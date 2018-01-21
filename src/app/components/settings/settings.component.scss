@@ -5,7 +5,7 @@ h1
   font-family: oswaldHeavy;
   position: absolute;
   top:50%;
-  left: 75px;
+  left: 65px;
   transform: translate(0,-50%);
   letter-spacing: 3px;
   color:rgb(255, 255, 255);
@@ -17,7 +17,7 @@ h2
 {
   font-family: oswaldRegular;
   color:rgb(91, 91, 91);
-  font-size: 24pt;
+  font-size: 22pt;
   margin:0px 0px 4px 0px;
 }
 
@@ -45,6 +45,9 @@ hr
 
 .settingsNav
 {
+  width:35px;
+  cursor:pointer;
+  display: inline-block;
   position: absolute;
   top:50%;
   transform: translate(0,-50%);

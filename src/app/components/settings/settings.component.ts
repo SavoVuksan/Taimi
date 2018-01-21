@@ -17,10 +17,11 @@ export class SettingsComponent implements OnInit {
   public settings:any;
 
   //Settings constants
-  public readonly MinHoursPerDay = 0;
-  public readonly MaxHoursPerDay = 24;
-  public readonly MinHoursPerWeek = 0;
-  public readonly MaxHoursPerWeek = 36;
+  public MinHoursPerDay = 1;
+  public MaxHoursPerDay = 12;
+  public MinHoursPerWeek = 1;
+  public MaxHoursPerWeek = 42;
+  public navigatorOn:boolean;
 
   constructor(private _http : Http,
     private _loadFileDataService : LoadFileDataService,
@@ -29,6 +30,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit()
   {
     this.loadSettings();
+    this.navigatorOn = false;
   }
 
   loadSettings(){
@@ -36,7 +38,7 @@ export class SettingsComponent implements OnInit {
     this._loadFileDataService.getFileData(this.settingsJsonURL)
       .subscribe(data => {
         this.settings = data;
-        console.log(this.settings);
+        //this.MinHoursPerWeek = this.settings.hoursPerDay *7;
       });
   }
 
@@ -45,5 +47,9 @@ writeSettings()
   this._writeFileDataService.writeToFile(this.settings,'./src/app/config/settings.json');
 }
 
+toggleNavigator()
+{
+  this.navigatorOn = !this.navigatorOn;
+}
 
 }

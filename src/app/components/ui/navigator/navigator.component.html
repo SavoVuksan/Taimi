@@ -1,1 +1,32 @@
-<img src="../../../../assets/images/nav.png" alt="">
+<div class="navContainer" [@toggleNavigator]=navigatorVisible>
+  <div class="navHeader">
+    <h1>Bozo Vuksan</h1>
+    <h2>4 Hours Left Today</h2>
+  </div>
+  <div class="navBody">
+    <div (click)="changeScreen('/home')" class="navLink" id="{{home}}">
+      <h2 id="{{home}}">Home</h2>
+      <div class="iconContainer"></div>
+    </div>
+    <div (click)="changeScreen('/settings')" class="navLink" id="{{statistics}}">
+      <h2 id="{{statistics}}">Statistics</h2>
+      <div class="iconContainer"></div>
+    </div>
+    <div (click)="changeScreen('/settings')" class="navLink" id="{{lockPrograms}}">
+      <h2 id="{{lockPrograms}}">Lock Programs</h2>
+      <div class="iconContainer"></div>
+    </div>
+    <div (click)="changeScreen('/settings')" class="navLink" id="{{lockWebsites}}">
+      <h2 id="{{lockWebsites}}">Lock Websites</h2>
+      <div class="iconContainer"></div>
+    </div>
+    <div (click)="changeScreen('/settings')" class="navLink" id="{{settings}}">
+      <h2 id="{{settings}}">Time Settings</h2>
+      <div class="iconContainer"></div>
+    </div>
+  </div>
+</div>
+<div (click)=hideNavigator() class="navBackground"
+[@toggleBackground]=navigatorVisible>
+
+</div>

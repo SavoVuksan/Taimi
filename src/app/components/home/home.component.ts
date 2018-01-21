@@ -18,10 +18,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private _measureRunTimeService: MeasureRunTimeService,
     private _trackProgramsService: TrackProgramsService,
-    private router : Router) { }
+    private _router : Router) { }
 
   ngOnInit() {
-    this.router.navigateByUrl('/settings');
     this.displayTime();
 
     this._trackProgramsService.programStackJSON

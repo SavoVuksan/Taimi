@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, SimpleChange } from '@angular/core';
 import {trigger,state,style,animate,transition} from '@angular/animations';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -73,6 +73,14 @@ export class ToggleComponent implements ControlValueAccessor {
     this.updateToggleText();
   }
 
+  ngOnChanges(changes: SimpleChange)
+  {
+    if(changes['toggle'])
+    {
+      this.updateToggleText();
+    }
+  }
+
   writeValue(value: any){
   }
   registerOnChange(fn){
@@ -84,6 +92,7 @@ export class ToggleComponent implements ControlValueAccessor {
     this.toggle = !this.toggle;
     this.updateToggleText();
     this.propagateChange(this.toggle);
+
   }
   updateToggleText(){
     if(this.toggle)
