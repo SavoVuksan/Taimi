@@ -28,9 +28,8 @@ export class TimeCounterComponent implements OnInit {
 
   updateCounter()
   {
-    this.fillWidth = this.currentValue /
-    (this.maxValue - this.currentValue) * 100;
-    
+    this.fillWidth = this.currentValue / this.maxValue * 100;
+
   }
 
 }

@@ -8,29 +8,29 @@
   </div>
   <div class="row fullHeight">
     <div class="col settingsContainer">
-      <form #form="ngForm" (ngSubmit)="submit(form.value)" (change)=writeSettings()>
+      <form #form="ngForm" (ngSubmit)="submit(form.value)" (change)=sharedVariables.writeTimeSettings()>
         <h2>Hours per day</h2>
         <app-slider name="hourSlider" [sliderMin]=MinHoursPerDay
-         [sliderMax]=MaxHoursPerDay [sliderValue]=settings.hoursPerDay
-         [(ngModel)]=settings.hoursPerDay > </app-slider>
+         [sliderMax]=MaxHoursPerDay [sliderValue]=sharedVariables.getTimeSettings().hoursPerDay
+         [(ngModel)]=sharedVariables.getTimeSettings().hoursPerDay > </app-slider>
         <hr>
 
         <h2>Hours per Week</h2>
         <app-slider name="weekSlider" [sliderMin]=MinHoursPerWeek
-        [sliderMax]=MaxHoursPerWeek [sliderValue]=settings.hoursPerWeek
-        [(ngModel)]=settings.hoursPerWeek > </app-slider>
+        [sliderMax]=MaxHoursPerWeek [sliderValue]=sharedVariables.getTimeSettings().hoursPerWeek
+        [(ngModel)]=sharedVariables.getTimeSettings().hoursPerWeek > </app-slider>
         <hr>
 
         <h2 >Notification</h2>
-        <app-toggle (click)=writeSettings() name="notificationToggle"
-        [toggle]=settings.notificationsOn
-        [(ngModel)]=settings.notificationsOn></app-toggle>
+        <app-toggle (click)=sharedVariables.writeTimeSettings() name="notificationToggle"
+        [toggle]=sharedVariables.getTimeSettings().notificationsOn
+        [(ngModel)]=sharedVariables.getTimeSettings().notificationsOn></app-toggle>
         <hr>
 
         <h2>Lock PC</h2>
-        <app-toggle (click)=writeSettings() name="lockPCOnToggle"
-        [toggle]=settings.lockPCOn
-        [(ngModel)]=settings.lockPCOn></app-toggle>
+        <app-toggle (click)=sharedVariables.writeTimeSettings() name="lockPCOnToggle"
+        [toggle]=sharedVariables.getTimeSettings().lockPCOn
+        [(ngModel)]=sharedVariables.getTimeSettings().lockPCOn></app-toggle>
       </form>
     </div>
   </div>

@@ -7,6 +7,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import {SharedVariablesService} from './services/shared-variables.service';
+import {LoadFileDataService} from './services/load-file-data.service';
+import {WriteFileDataService} from './services/write-file-data.service';
+import {MeasureRunTimeService } from './services/measure-run-time.service';
+import {TrackProgramsService} from './services/track-programs.service';
+
+
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -57,7 +64,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     HttpModule
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, SharedVariablesService,
+     LoadFileDataService, WriteFileDataService,
+     MeasureRunTimeService, TrackProgramsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

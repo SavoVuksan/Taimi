@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
-
-
+import { SharedVariablesService} from './services/shared-variables.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,10 +9,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   constructor(public electronService: ElectronService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private sharedVariables : SharedVariablesService) {
 
     translate.setDefaultLang('en');
-
+    this.sharedVariables.loadtimeSettings();
+    this.sharedVariables.meausureTime();
+    /*
     if (electronService.isElectron()) {
       console.log('Mode electron');
       // Check if electron is correctly injected (see externals in webpack.config.js)
@@ -22,6 +24,6 @@ export class AppComponent {
       console.log('c', electronService.childProcess);
     } else {
       console.log('Mode web');
-    }
+    }*/
   }
 }

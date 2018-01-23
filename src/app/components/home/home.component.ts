@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {MeasureRunTimeService } from '../../services/measure-run-time.service';
 import {TrackProgramsService} from '../../services/track-programs.service';
 import {Observable} from 'rxjs/Rx';
+import {SharedVariablesService} from '../../services/shared-variables.service';
 
 @Component({
   selector: 'app-home',
@@ -13,38 +14,29 @@ import {Observable} from 'rxjs/Rx';
 export class HomeComponent implements OnInit {
 
   //TODO make this varible global and save it to a external .ts file with all important variables
-  time: number; //NOTE Just the display Output This is the time for how long the Computer is already running
   programs : String;
 
-  constructor(private _measureRunTimeService: MeasureRunTimeService,
-    private _trackProgramsService: TrackProgramsService,
-    private _router : Router) { }
+  constructor(private measureRunTimeService: MeasureRunTimeService,
+    private trackProgramsService: TrackProgramsService,
+    private router : Router,
+    public sharedVariables:SharedVariablesService) { }
 
   ngOnInit() {
-    this.displayTime();
-
-    this._trackProgramsService.programStackJSON
+    //this.displayTime();
+    this.trackProgramsService.programStackJSON
     .subscribe(stack => {
-      this._trackProgramsService.programStack = stack;
+      this.trackProgramsService.programStack = stack;
 
       let timer = Observable.timer(0,3000);
       timer.subscribe(t =>{
-        this._trackProgramsService.listenForPrograms();
+        this.trackProgramsService.listenForPrograms();
       });
 
     });
 
     }
 
-
-
-
   //NOTE Displays the Computer Timer every 100 mil. Seconds
-  displayTime(){
-    let timer = Observable.timer(0,100);
-    timer.subscribe(t =>{
-      this.time = +this._measureRunTimeService.measureTime().toFixed(0);
-    } );
-  }
+
 
 }

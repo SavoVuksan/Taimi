@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="homeHeader">
-
+      <img class="homeImg" src="../../../assets/images/TaimiLogoBig.png" alt="">
     </div>
   </div>
   <div class="row">
   <div class="homeBody">
-    <app-time-counter [counterName]="'Tag'" [maxValue]="10" [currentValue]=time></app-time-counter>
+    <app-time-counter [counterName]="'Tag'" [maxValue]=sharedVariables.getTimeSettings().hoursPerDay [currentValue]=sharedVariables.getTime()></app-time-counter>
   </div>
   </div>
 </div>
