@@ -1,14 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col bar boxFlat accentColor">
-      <h1>{{time}}</h1>
+    <div class="homeHeader">
+
     </div>
   </div>
   <div class="row">
-    <div class="col main boxFlat baseColor">
-      <h2>Programs & Processes</h2>
-      <p>{{programs}}</p>
-      <a routerLink="/settings"> <button type="button" name="button"> Settings</button> </a>
-    </div>
+  <div class="homeBody">
+    <app-time-counter [counterName]="'Tag'" [maxValue]="10" [currentValue]=time></app-time-counter>
+  </div>
   </div>
 </div>

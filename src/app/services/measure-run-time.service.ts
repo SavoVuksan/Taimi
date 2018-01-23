@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
 
@@ -6,7 +6,8 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 export class MeasureRunTimeService {
 
   public now:number = 0;
-  private STARTTIME:any = new Date().getTime() / 1000;
+  public STARTTIME:any = new Date().getTime() / 1000;
+
 
   constructor() { }
 

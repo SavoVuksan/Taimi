@@ -41,11 +41,11 @@ export class TrackProgramsService {
               program.programStartTime = new Date().getTime() / 1000;
               program.isRunning = true;
               program.timeAlreadyRun = 0;
-              console.log(program.timeAlreadyRun);
+              //console.log(program.timeAlreadyRun);
             }else
             {
               program.timeUsedNow = (new Date().getTime() / 1000 - program.programStartTime) + program.alreadyUsedTime;
-              console.log(program.programName + " " + program.timeUsedNow);
+              //console.log(program.programName + " " + program.timeUsedNow);
 
             }
 

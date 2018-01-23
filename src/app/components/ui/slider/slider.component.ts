@@ -32,7 +32,6 @@ export class SliderComponent implements ControlValueAccessor {
   @Input() sliderMax:number; //the max value of the slider
   @Input() sliderValue:number; //Output of the value of the slider
   public sliderFillWidth:number; //SliderFill width
-  public sliderThumbPosition:number;
   private sliderIsChanging:boolean;
   propagateChange = (_: any) => {};
 
@@ -67,8 +66,7 @@ export class SliderComponent implements ControlValueAccessor {
     this.sliderFillWidth = (this.sliderValue - this.sliderMin) /
     (this.sliderMax - this.sliderMin) * 100;
 
-    this.sliderThumbPosition = (this.sliderValue - this.sliderMin) /
-    (this.sliderMax - this.sliderMin) * 100;
+
   }
 
 }

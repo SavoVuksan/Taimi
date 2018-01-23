@@ -23,6 +23,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { ToggleComponent } from './components/ui/toggle/toggle.component';
 import { SliderComponent } from './components/ui/slider/slider.component';
 import { NavigatorComponent } from './components/ui/navigator/navigator.component';
+import { TimeCounterComponent } from './components/ui/time-counter/time-counter.component';
 
 
 
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsComponent,
     ToggleComponent,
     SliderComponent,
-    NavigatorComponent
+    NavigatorComponent,
+    TimeCounterComponent
   ],
   imports: [
     BrowserModule,
