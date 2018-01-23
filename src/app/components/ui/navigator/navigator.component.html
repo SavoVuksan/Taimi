@@ -4,23 +4,23 @@
     <h2>4 Hours Left Today</h2>
   </div>
   <div class="navBody">
-    <div (click)="changeScreen('/home')" class="navLink" id="{{home}}">
+    <div (click)="changeScreen('/home')" (click)="home='selected'" class="navLink" id="{{home}}">
       <h2 id="{{home}}">Home</h2>
       <div class="iconContainer"></div>
     </div>
-    <div (click)="changeScreen('/settings')" class="navLink" id="{{statistics}}">
-      <h2 id="{{statistics}}">Statistics</h2>
-      <div class="iconContainer"></div>
-    </div>
-    <div (click)="changeScreen('/settings')" class="navLink" id="{{lockPrograms}}">
+    <div (click)="changeScreen('/settings')" (click)="lockPrograms='selected'" class="navLink" id="{{lockPrograms}}">
       <h2 id="{{lockPrograms}}">Lock Programs</h2>
       <div class="iconContainer"></div>
     </div>
-    <div (click)="changeScreen('/settings')" class="navLink" id="{{lockWebsites}}">
+    <div (click)="changeScreen('/settings')" (click)="lockWebsites='selected'" class="navLink" id="{{lockWebsites}}">
       <h2 id="{{lockWebsites}}">Lock Websites</h2>
       <div class="iconContainer"></div>
     </div>
-    <div (click)="changeScreen('/settings')" class="navLink" id="{{settings}}">
+    <div (click)="changeScreen('/settings')" (click)="statistics='selected'" class="navLink" id="{{statistics}}">
+      <h2 id="{{statistics}}">Statistics</h2>
+      <div class="iconContainer"></div>
+    </div>
+    <div (click)="changeScreen('/settings')" (click)="settings='selected'" class="navLink" id="{{settings}}">
       <h2 id="{{settings}}">Time Settings</h2>
       <div class="iconContainer"></div>
     </div>

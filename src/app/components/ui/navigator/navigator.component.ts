@@ -84,6 +84,16 @@ export class NavigatorComponent implements ControlValueAccessor {
   changeScreen(screenURL)
   {
     this._router.navigateByUrl(screenURL);
+    this.resetSelected();
+    this.hideNavigator();
+  }
+  resetSelected()
+  {
+    this.home = '';
+    this.statistics = '';
+    this.lockPrograms = '';
+    this.lockWebsites = '';
+    this.settings = '';
   }
 
 }
