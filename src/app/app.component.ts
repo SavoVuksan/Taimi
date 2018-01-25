@@ -14,6 +14,7 @@ export class AppComponent {
 
     translate.setDefaultLang('en');
     this.sharedVariables.loadtimeSettings();
+    this.sharedVariables.setTimeUsedThisWeek(0);
     this.sharedVariables.meausureTime();
     /*
     if (electronService.isElectron()) {

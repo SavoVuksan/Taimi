@@ -17,7 +17,6 @@ export class TimeCounterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     var timer = Observable.timer(0,100);
     timer.subscribe(t => {
       this.updateCounter();
@@ -29,7 +28,7 @@ export class TimeCounterComponent implements OnInit {
   updateCounter()
   {
     this.fillWidth = this.currentValue / this.maxValue * 100;
-
+    
   }
 
 }

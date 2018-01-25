@@ -7,8 +7,9 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class SharedVariablesService {
 
-  private timeSettings:any;
-  private time:number;
+  private timeSettings:any; //all time settings
+  private time:number; //Time the computer is already running
+  private timeUsedThisWeek:number; //The Time already used this week start Mo-So
   private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
 
   constructor(private loadFileDataService : LoadFileDataService,
@@ -31,6 +32,12 @@ export class SharedVariablesService {
       this.timeSettings,'./src/app/config/timeSettings.json');
   }
 
+  meausureTime(){
+    let timer = Observable.timer(0,100);
+    timer.subscribe(t =>{
+      this.time = +this.measureRunTimeService.measureTime().toFixed(2);
+    } );
+  }
 
   setTimeSettings(timeSettings)
   {
@@ -49,11 +56,15 @@ export class SharedVariablesService {
   {
     return this.time;
   }
-  meausureTime(){
-    let timer = Observable.timer(0,100);
-    timer.subscribe(t =>{
-      this.time = +this.measureRunTimeService.measureTime().toFixed(2);
-    } );
+
+  setTimeUsedThisWeek(timeUsedThisWeek)
+  {
+    this.timeUsedThisWeek = timeUsedThisWeek;
   }
+  getTimeUsedThisWeek()
+  {
+    return this.timeUsedThisWeek;
+  }
+
 
 }

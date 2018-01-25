@@ -6,7 +6,45 @@
   </div>
   <div class="row">
   <div class="homeBody">
-    <app-time-counter [counterName]="'Tag'" [maxValue]=sharedVariables.getTimeSettings().hoursPerDay [currentValue]=sharedVariables.getTime()></app-time-counter>
+    <div class="col-6 counterContainer">
+      <app-time-counter [counterName]="'Tag'"
+      [maxValue]=sharedVariables.getTimeSettings().hoursPerDay
+      [currentValue]=sharedVariables.getTime()></app-time-counter>
+    </div>
+    <div class="col-6 counterContainer">
+      <app-time-counter [counterName]="'Wochen'"
+      [maxValue]=sharedVariables.getTimeSettings().hoursPerWeek
+      [currentValue]=sharedVariables.getTime()+sharedVariables.getTimeUsedThisWeek()>
+    </app-time-counter>
+    </div>
+    <div class="col-3 linkPanelContainer">
+      <div class="linkPanel">
+        <img src="../../../assets/icons/png/lockWhite.png" alt="">
+        <h2>Lock Websites</h2>
+      </div>
+    </div>
+    <div class="col-3 linkPanelContainer">
+      <div class="linkPanel">
+        <img src="../../../assets/icons/png/lockWhite.png" alt="">
+        <h2>Lock Programs</h2>
+      </div>
+    </div>
+    <div class="col-3 linkPanelContainer">
+      <div class="linkPanel">
+        <img src="../../../assets/icons/png/statisticsWhite.png" alt="">
+        <h2>Statistics</h2>
+      </div>
+    </div>
+    <div class="col-3 linkPanelContainer">
+      <div class="linkPanel">
+        <img src="../../../assets/icons/png/timeSettingsWhite.png" alt="">
+        <h2>Time Settings</h2>
+      </div>
+    </div>
+
+
+
+
   </div>
   </div>
 </div>
