@@ -31,7 +31,7 @@ import { ToggleComponent } from './components/ui/toggle/toggle.component';
 import { SliderComponent } from './components/ui/slider/slider.component';
 import { NavigatorComponent } from './components/ui/navigator/navigator.component';
 import { TimeCounterComponent } from './components/ui/time-counter/time-counter.component';
-
+import { NotificationService} from './services/notification.service';
 
 
 // AoT requires an exported function for factories
@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [ElectronService, SharedVariablesService,
      LoadFileDataService, WriteFileDataService,
-     MeasureRunTimeService, TrackProgramsService],
+     MeasureRunTimeService, TrackProgramsService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 <div class="navContainer" [@toggleNavigator]=navigatorVisible>
   <div class="navHeader">
     <h1>Bozo Vuksan</h1>
-    <h2>4 Hours Left Today</h2>
+    <h2>{{sharedVariables.getTimeLeftDay()}} Hours
+       Left Today</h2>
   </div>
   <div class="navBody">
     <div (click)="changeScreen('/home')" (click)="home='selected'" class="navLink" id="{{home}}">

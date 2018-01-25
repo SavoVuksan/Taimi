@@ -2,6 +2,7 @@ import { Component, OnInit,Input,forwardRef,HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import {trigger,state,style,animate,transition} from '@angular/animations';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {SharedVariablesService} from '../../../services/shared-variables.service';
 
 @Component({
   selector: 'app-navigator',
@@ -47,7 +48,8 @@ export class NavigatorComponent implements ControlValueAccessor {
   @Input() settings:string;
   propagateChange = (_: any) => {};
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router,
+  public sharedVariables : SharedVariablesService) { }
 
   @HostListener('window:keydown', ['$event'])
   keyboardInput(event: KeyboardEvent)

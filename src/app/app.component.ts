@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedVariablesService} from './services/shared-variables.service';
+import { NotificationService} from './services/notification.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,9 +12,11 @@ import { SharedVariablesService} from './services/shared-variables.service';
 export class AppComponent {
   constructor(public electronService: ElectronService,
     private translate: TranslateService,
-    private sharedVariables : SharedVariablesService) {
+    private sharedVariables : SharedVariablesService,
+    private notificationService:NotificationService) {
 
     translate.setDefaultLang('en');
+
     this.sharedVariables.loadtimeSettings();
     this.sharedVariables.setTimeUsedThisWeek(0);
     this.sharedVariables.meausureTime();

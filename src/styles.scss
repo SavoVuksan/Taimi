@@ -33,33 +33,38 @@ body
   background-color: rgb(255, 255, 255);
 }
 
-.box
+.animationCircleContainer
 {
-  border-radius: 5px;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
+  width:200px;
+  position: absolute;
+  left:50%;
+  top:100px;
+  transform:translate(-50%,-50%);
 
+  img
+  {
+    width:100%;
+    position: absolute;
+    top:0px;
+    left:0px;
+  }
+
+  .rotating
+  {
+    animation:rotating 1s infinite linear;
+  }
+
+  h1
+  {
+    font-family: oswaldRegular;
+    font-size:21pt;
+    position: absolute;
+    top:0px;
+  }
 }
 
-.boxFlat
+@keyframes rotating
 {
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
-}
-
-.baseColor
-{
-  background-color: rgb(255, 255, 255);
-
-
-}
-
-.accentColor
-{
-  background-color: rgb(40, 203, 190);
-}
-
-.baseDarkColor
-{
-  background-color:rgb(242, 242, 242);
-
-
+  0%{transform: rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
