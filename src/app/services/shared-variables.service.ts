@@ -49,7 +49,7 @@ export class SharedVariablesService {
       }
       if(this.time >= this.timeSettings.hoursPerDay)
       {
-        this.notificationService.showTimeIsUpNotification();
+        //this.notificationService.showTimeIsUpNotification();
       }
     } );
   }

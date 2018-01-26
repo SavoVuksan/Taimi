@@ -10,6 +10,7 @@ let path = require('path');
 export class NotificationService {
 
   private showTimIsUpWindowOn = false;
+  private showLittleNotification = false;
 
   constructor() { }
 
@@ -39,5 +40,32 @@ export class NotificationService {
     }
 
   }
+
+  showSmallNotification(notificationHeader: String,notificationMessage: String)
+  {
+    let win;
+    let winWidth = 400;
+    let winHeight = 170;
+
+if(!this.showLittleNotification){
+    console.log("show Little Notification");
+
+    win = new BrowserWindow({width:winWidth,height:winHeight,transparent:true,
+    frame:false,show:false,resizable:true,alwaysOnTop:true});
+    win.loadURL(url.format({
+      pathname: '/src/assets/notificationWindows/smallNotificationScreen/smallNotificationWindow.html',
+      protocol: 'file:',
+      slashes: true
+    }));
+
+    win.once('ready-to-show', () => {
+      win.show();
+      win.setPosition(screen.width -winWidth,screen.height-winHeight);
+
+      win.webContents.send("notificationData",notificationHeader,notificationMessage);
+    });
+    this.showLittleNotification = true;
+  }
+}
 
 }
