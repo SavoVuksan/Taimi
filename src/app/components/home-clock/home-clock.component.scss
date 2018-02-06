@@ -1,0 +1,21 @@
+h1 {
+  color: white;
+  font-family: oswaldHeavy;
+  font-size: 83.82pt;
+  margin-bottom: 0;
+
+}
+
+h2 {
+  color: white;
+  font-family: oswaldRegular;
+  font-size: 27.85pt;
+  margin-bottom: 0;
+}
+
+.clock {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%,-50%);
+}

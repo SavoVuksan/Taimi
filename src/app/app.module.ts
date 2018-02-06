@@ -32,6 +32,9 @@ import { SliderComponent } from './components/ui/slider/slider.component';
 import { NavigatorComponent } from './components/ui/navigator/navigator.component';
 import { TimeCounterComponent } from './components/ui/time-counter/time-counter.component';
 import { NotificationService} from './services/notification.service';
+import { WallpaperContainerComponent } from './components/wallpaper-container/wallpaper-container.component';
+import { HomeClockComponent } from './components/home-clock/home-clock.component';
+import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
 
 
 // AoT requires an exported function for factories
@@ -47,7 +50,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToggleComponent,
     SliderComponent,
     NavigatorComponent,
-    TimeCounterComponent
+    TimeCounterComponent,
+    WallpaperContainerComponent,
+    HomeClockComponent,
+    BurgerMenuComponent
   ],
   imports: [
     BrowserModule,

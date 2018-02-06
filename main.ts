@@ -19,8 +19,8 @@ function createWindow() {
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: 900,
-    height: 600,
+    width: 775 ,
+    height: 750 ,
     icon:'./src/assets/images/logo.png'
   });
   //win.setMenu(null)
