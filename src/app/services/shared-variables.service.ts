@@ -13,11 +13,24 @@ export class SharedVariablesService {
   private timeLeftDay:number; //The Time left Today
   private timeUsedThisWeek:number; //The Time already used this week start Mo-So
   private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
+  private navigatorVisible: boolean;//Sets the Navigator Visibility
 
   constructor(private loadFileDataService : LoadFileDataService,
     private writeFileDataService: WriteFileDataService,
     private measureRunTimeService : MeasureRunTimeService,
     private notificationService: NotificationService) { }
+
+
+    toggleNavigator(){
+      this.navigatorVisible = !this.navigatorVisible;
+      return this.navigatorVisible;
+    }
+    getnavigatorVisibility(){
+      return this.navigatorVisible;
+    }
+    setNavigatorVisibility(visible: boolean){
+      this.navigatorVisible = visible;
+    }
 
   loadtimeSettings(){
     this.timeSettings = {};

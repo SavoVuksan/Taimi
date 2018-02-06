@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedVariablesService } from "../../services/shared-variables.service";
 
 @Component({
   selector: 'app-burger-menu',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BurgerMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedVariables: SharedVariablesService) { }
 
   ngOnInit() {
   }

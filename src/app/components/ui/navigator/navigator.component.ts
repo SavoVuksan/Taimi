@@ -56,6 +56,7 @@ export class NavigatorComponent implements ControlValueAccessor {
   {
     if(event.key == "Tab")
     {
+      this.sharedVariables.toggleNavigator();
       console.log("tabbed");
       if(!this.navigatorVisible)
       {
@@ -77,10 +78,12 @@ export class NavigatorComponent implements ControlValueAccessor {
 
   hideNavigator(){
     this.navigatorVisible = false;
+    this.sharedVariables.setNavigatorVisibility(false);
     this.propagateChange(this.navigatorVisible);
   }
   showNavigator(){
     this.navigatorVisible = true;
+    this.sharedVariables.setNavigatorVisibility(true);
     this.propagateChange(this.navigatorVisible);
   }
   changeScreen(screenURL)
