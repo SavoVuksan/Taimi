@@ -1,8 +1,9 @@
 <div class="clock">
   <h1>
-04:20
+    {{measureTime.getCurrentTime() | date:'HH:mm'}}
+
 </h1>
   <h2>
-  20.04.2018
+    {{measureTime.getCurrentTime() | date:'dd.MM.yyyy'}}
 </h2>
 </div>

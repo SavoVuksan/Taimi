@@ -18,7 +18,9 @@ export class SharedVariablesService {
   constructor(private loadFileDataService : LoadFileDataService,
     private writeFileDataService: WriteFileDataService,
     private measureRunTimeService : MeasureRunTimeService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService) {
+      this.navigatorVisible = false;
+    }
 
 
     toggleNavigator(){

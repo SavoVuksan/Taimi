@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MeasureRunTimeService } from '../../services/measure-run-time.service';
+import { DatePipe } from "@angular/common";
+import localeDe from "@angular/common/locales/de";
 
 @Component({
   selector: 'app-home-clock',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeClockComponent implements OnInit {
 
-  constructor() { }
+  constructor(private measureTime:MeasureRunTimeService) { }
 
   ngOnInit() {
   }

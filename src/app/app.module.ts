@@ -35,12 +35,15 @@ import { NotificationService} from './services/notification.service';
 import { WallpaperContainerComponent } from './components/wallpaper-container/wallpaper-container.component';
 import { HomeClockComponent } from './components/home-clock/home-clock.component';
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
+import { DayTimeComponent } from './components/day-time/day-time.component';
 
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeCounterComponent,
     WallpaperContainerComponent,
     HomeClockComponent,
-    BurgerMenuComponent
+    BurgerMenuComponent,
+    DayTimeComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +74,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     HttpModule
   ],
-  providers: [ElectronService, SharedVariablesService,
+  providers: [    ElectronService, SharedVariablesService,
      LoadFileDataService, WriteFileDataService,
-     MeasureRunTimeService, TrackProgramsService, NotificationService],
+     MeasureRunTimeService, TrackProgramsService, NotificationService,
+    
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

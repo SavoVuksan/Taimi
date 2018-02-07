@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MeasureRunTimeService } from "../../services/measure-run-time.service";
 
 @Component({
   selector: 'app-wallpaper-container',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WallpaperContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private measureTime:MeasureRunTimeService) { }
 
   ngOnInit() {
   }
