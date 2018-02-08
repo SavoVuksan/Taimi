@@ -44,8 +44,8 @@ export class NotificationService {
   showSmallNotification(notificationHeader: String,notificationMessage: String)
   {
     let win;
-    let winWidth = 400;
-    let winHeight = 170;
+    let winWidth = 435 ;
+    let winHeight = 153;
 
 if(!this.showLittleNotification){
     console.log("show Little Notification");
@@ -60,7 +60,7 @@ if(!this.showLittleNotification){
 
     win.once('ready-to-show', () => {
       win.show();
-      win.setPosition(screen.width -winWidth,screen.height-winHeight);
+      win.setPosition(screen.width -winWidth,screen.height-winHeight-40);
 
       win.webContents.send("notificationData",notificationHeader,notificationMessage);
     });

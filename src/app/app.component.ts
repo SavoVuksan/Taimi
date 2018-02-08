@@ -16,8 +16,9 @@ export class AppComponent {
     private notificationService:NotificationService) {
 
     translate.setDefaultLang('en');
-    //this.notificationService.showSmallNotification("Hey YOU!","Watch this cool new Notification");
-    this.sharedVariables.loadtimeSettings(); 
+    //this.notificationService.showSmallNotification("Notification",
+    //"All kitties are saved now, well not all but all kitties in your local area. Next step ist to save the puppies.");
+    this.sharedVariables.loadtimeSettings();
     this.sharedVariables.setTimeUsedThisWeek(0);
     this.sharedVariables.meausureTime();
     /*

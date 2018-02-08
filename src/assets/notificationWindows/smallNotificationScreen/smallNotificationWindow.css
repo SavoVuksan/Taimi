@@ -4,8 +4,8 @@
   src: url('../../fonts/oswald/Oswald-Light.ttf');
 }
 @font-face {
-  font-family:'oswaldHeavy';
-  src: url('../../fonts/oswald/Oswald-Heavy.ttf');
+  font-family:'oswaldRegular';
+  src: url('../../fonts/oswald/Oswald-Regular.ttf');
 }
 
 html,body{
@@ -20,44 +20,68 @@ html,body{
 }
 
 h1{
-  font-family: oswaldLight;
+  font-family: oswaldRegular;
   color: rgb(69, 69, 69);
   margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 22.85pt;
 }
 p{
   margin-top: 0px;
   font-family:  oswaldLight;
-  font-size: 14pt;
-  margin-left: 10px;
+  font-size: 17.14pt;
+
 }
 
+.bell{
+  position: absolute;
+  width: 60%;
+  left:50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+
+}
 .content{
+  position: absolute;
   padding-left: 10px;
-  padding-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
 }
 
 .closeBar{
 
   position:  absolute;
   width: 100%;
-  height: 30px;
+  height: 18px;
 
 }
 .closeBar >img{
 
   position: absolute;
   height: 100%;
-  right: 0px;
-  filter: invert(0.3);
+  left: 10px;
+  top: 10px;
+
+}
+.imgCont{
+  position: relative;
+  height: 100%;
+  width:116px;
+  display: inline-block;
+   background: url("../../images/background.jpg") no-repeat left top fixed;
+  background-size: cover;
+  border-radius: 7px 0px 0px 7px;
 }
 .notificationContainer{
   position: absolute;
-  width: 100%;
+  width: 96%;
   height: 100%;
+  right: 4% ;
   background-color: rgb(255, 255, 255);
   animation-name: fadeIn;
   animation-duration: 1s;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.34);
 }
 .notificationContainerFadeOut{
   transition: transform 1s;

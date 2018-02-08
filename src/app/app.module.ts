@@ -37,7 +37,6 @@ import { HomeClockComponent } from './components/home-clock/home-clock.component
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
 import { DayTimeComponent } from './components/day-time/day-time.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { WeekTimeComponent } from './components/week-time/week-time.component';
 
 
 // AoT requires an exported function for factories
@@ -60,8 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeClockComponent,
     BurgerMenuComponent,
     DayTimeComponent,
-    ProgressBarComponent,
-    WeekTimeComponent
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [    ElectronService, SharedVariablesService,
      LoadFileDataService, WriteFileDataService,
      MeasureRunTimeService, TrackProgramsService, NotificationService,
-    
+
     ],
   bootstrap: [AppComponent]
 })
