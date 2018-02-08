@@ -1,3 +1,8 @@
-<p>
-  day-time works!
-</p>
+
+<div class="roundedCont">
+<h2 *ngIf="type=='Day';else week">{{getLeftTime()}}h left Today</h2>
+<ng-template #week>
+  <h2>{{getLeftTime()}}h left this Week</h2>
+</ng-template>
+<app-progress-bar [progress]="getLeftTimeProgress()"></app-progress-bar>
+</div>

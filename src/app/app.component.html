@@ -3,5 +3,10 @@
 <app-navigator
  [home]="'selected'" [navigatorVisible]="sharedVariables.getnavigatorVisibility()">
 </app-navigator>
+<div class="container-fluid">
+
+<app-day-time [type]="'Day'"></app-day-time>
+<app-day-time [type]="'Week'"></app-day-time>
+</div>
 <!--
 <router-outlet></router-outlet>!-->

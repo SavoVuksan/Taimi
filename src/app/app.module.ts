@@ -36,6 +36,8 @@ import { WallpaperContainerComponent } from './components/wallpaper-container/wa
 import { HomeClockComponent } from './components/home-clock/home-clock.component';
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
 import { DayTimeComponent } from './components/day-time/day-time.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { WeekTimeComponent } from './components/week-time/week-time.component';
 
 
 // AoT requires an exported function for factories
@@ -57,7 +59,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     WallpaperContainerComponent,
     HomeClockComponent,
     BurgerMenuComponent,
-    DayTimeComponent
+    DayTimeComponent,
+    ProgressBarComponent,
+    WeekTimeComponent
   ],
   imports: [
     BrowserModule,

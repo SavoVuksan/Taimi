@@ -1,0 +1,18 @@
+.outerBar{
+  position: absolute;
+  width: 94%;
+  height: 15px;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%,0%);
+  background-color: #EAEAEA;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.innerBar{
+  position: absolute;
+  height: 100%;
+
+  border-radius: 15px;
+  background-color: #28CBC2;
+}
