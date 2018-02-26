@@ -1,22 +1,34 @@
 import { Injectable } from '@angular/core';
 
+var fs = require('fs');
+var mkdirp = require('mkdirp');
+var getDirName = require('path').dirname;
+
+
 @Injectable()
 export class WriteFileDataService {
 
   constructor() { }
 
-  writeToFile(object:any, jsonURL:string)
-  {
+  writeToFile(object: any, jsonURL: string, fileName: string) {
+
     var json = JSON.stringify(object);
-    var fs = require('fs');
-    fs.writeFile(jsonURL, json, 'utf8',function(err,data){
-      if(err){
+
+    mkdirp(getDirName(jsonURL+'\\'+fileName), function(err) {
+
+      if (err) {
         console.log(err);
-      }else
-      {
-        
       }
+
+      fs.writeFileSync(jsonURL+'\\'+fileName, json, 'utf8', function(err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+
+        }
+      });
     });
+
 
   }
 

@@ -25,6 +25,8 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
+  cursor:default;
+  user-select: none;
 }
 
 body

@@ -1,0 +1,36 @@
+{
+  "weekMaxTime": 32,
+  "weekLeftTime": 16,
+  "weekStartDate": "05.02.2018",
+  "weekEndDate": "11.02.2018",
+  "days":[
+    {
+      "dayMaxTime": 8,
+      "dayLeftTime": 2
+    },
+    {
+      "dayMaxTime": 10,
+      "dayLeftTime": 1
+    },
+    {
+      "dayMaxTime": 8,
+      "dayLeftTime": 1
+    },
+    {
+      "dayMaxTime": 6,
+      "dayLeftTime": 0
+    },
+    {
+      "dayMaxTime": 8,
+      "dayLeftTime": 2
+    },
+    {
+      "dayMaxTime": 3,
+      "dayLeftTime": 0
+    },
+    {
+      "dayMaxTime": 4,
+      "dayLeftTime": 2
+    }
+  ]
+}

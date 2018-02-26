@@ -16,6 +16,7 @@ export class DayTimeComponent implements OnInit {
 
   ngOnInit() {
 
+
   }
   getLeftTimeProgress() {
     let maxTime;
@@ -26,8 +27,7 @@ export class DayTimeComponent implements OnInit {
 
     } else {
       maxTime = this.sharedVars.getTimeSettings().hoursPerWeek;
-      restTime = this.sharedVars.getTimeUsedThisWeek();
-      console.log("weektime:" + restTime);
+      restTime = this.sharedVars.getTimeLeftWeek();
     }
     let wastedTime = maxTime - restTime;
     let perCent = maxTime / 100;
@@ -37,7 +37,7 @@ export class DayTimeComponent implements OnInit {
     if (this.type == "Day") {
       return Math.round(this.sharedVars.getTimeLeftDay());
     } else {
-      return Math.round(this.sharedVars.getTimeUsedThisWeek());
+      return Math.round(this.sharedVars.getTimeLeftWeek());
     }
   }
 

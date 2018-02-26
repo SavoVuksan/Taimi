@@ -11,7 +11,7 @@ export class SharedVariablesService {
   private timeSettings:any; //all time settings
   private time:number; //Time the computer is already running
   private timeLeftDay:number; //The Time left Today
-  private timeUsedThisWeek:number; //The Time already used this week start Mo-So
+  private timeLeftWeek:number; //The Time already used this week start Mo-So
   private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
   private navigatorVisible: boolean;//Sets the Navigator Visibility
 
@@ -47,7 +47,7 @@ export class SharedVariablesService {
   writeTimeSettings()
   {
     this.writeFileDataService.writeToFile(
-      this.timeSettings,'./src/app/config/timeSettings.json');
+      this.timeSettings,'./src/app/config','timeSettings.json');
   }
 
   meausureTime(){
@@ -61,6 +61,12 @@ export class SharedVariablesService {
       }else
       {
         this.timeLeftDay = this.timeSettings.hoursPerDay - this.time;
+      }
+      if(this.timeLeftWeek <= 0){
+        this.timeLeftWeek = 0;
+      }else{
+        console.log(this.timeSettings.weekMaxTime);
+        this.timeLeftWeek = this.timeSettings.hoursPerWeek - this.time;
       }
       if(this.time >= this.timeSettings.hoursPerDay)
       {
@@ -95,13 +101,13 @@ export class SharedVariablesService {
   {
     return this.timeLeftDay;
   }
-  setTimeUsedThisWeek(timeUsedThisWeek)
+  setTimeLeftWeek(timeLeftWeek)
   {
-    this.timeUsedThisWeek = timeUsedThisWeek;
+    this.timeLeftWeek = timeLeftWeek;
   }
-  getTimeUsedThisWeek()
+  getTimeLeftWeek()
   {
-    return this.timeUsedThisWeek;
+    return this.timeLeftWeek;
   }
 
 

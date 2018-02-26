@@ -1,16 +1,19 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
-
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
+let fs = require("fs");
+let icpMain = require("electron").ipcMain;
 
 if (serve) {
   require('electron-reload')(__dirname, {
   });
 }
 
+
 function createWindow() {
+
 
   const electronScreen = screen;
   //const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -27,19 +30,30 @@ function createWindow() {
   // and load the index.html of the app.
   win.loadURL('file://' + __dirname + '/index.html');
 
+
+
   // Open the DevTools.
   if (serve) {
     //win.webContents.openDevTools();
   }
 
   // Emitted when the window is closed.
-  win.on('closed', () => {
+  win.on('close', () => {
+  fs.writeFileSync(app.getPath('documents')+"\\Taimi\\closeFile2.txt","That file was written on Close",
+"utf8",function(err,data){
+  if(err){
+    console.log(err);
+  }});
+
+
     // Dereference the window object, usually you would store window
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null;
   });
+
 }
+
 
 try {
 
