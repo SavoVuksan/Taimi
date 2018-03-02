@@ -1,11 +1,12 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen,Menu,Tray } from 'electron';
 import * as path from 'path';
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 let fs = require("fs");
 let icpMain = require("electron").ipcMain;
-
+var appIcon;
+var iconpath = "src/assets/images/logo.png";
 if (serve) {
   require('electron-reload')(__dirname, {
   });
@@ -30,26 +31,36 @@ function createWindow() {
   // and load the index.html of the app.
   win.loadURL('file://' + __dirname + '/index.html');
 
-
-
+  appIcon = new Tray(iconpath);
+  var contextMenu = Menu.buildFromTemplate([
+    {label: 'Show App', click: function(){
+      win.show();
+    }},
+    {
+      label: 'Quit',click: function(){
+        app.exit(0);
+      }
+  }
+  ]);
+  appIcon.setContextMenu(contextMenu);
+  appIcon.on('click',function(){
+    console.log("hhlsdlsf");
+    win.show();
+  });
   // Open the DevTools.
   if (serve) {
     //win.webContents.openDevTools();
   }
 
   // Emitted when the window is closed.
-  win.on('close', () => {
-  fs.writeFileSync(app.getPath('documents')+"\\Taimi\\closeFile2.txt","That file was written on Close",
-"utf8",function(err,data){
-  if(err){
-    console.log(err);
-  }});
+  win.on('show',function(){
+  appIcon.setHighlightMode('always');
+})
+  win.on('close', (event) => {
+  event.preventDefault();
+  win.hide();
 
-
-    // Dereference the window object, usually you would store window
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null;
+  return false;
   });
 
 }
