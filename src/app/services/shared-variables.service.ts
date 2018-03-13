@@ -14,6 +14,7 @@ export class SharedVariablesService {
   private timeLeftWeek:number; //The Time already used this week start Mo-So
   private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
   private navigatorVisible: boolean;//Sets the Navigator Visibility
+  private userDataThisWeek: any;
 
   constructor(private loadFileDataService : LoadFileDataService,
     private writeFileDataService: WriteFileDataService,
@@ -109,6 +110,54 @@ export class SharedVariablesService {
   {
     return this.timeLeftWeek;
   }
+  getWeekStartDate(){
+    var curr = new Date();
+    var first = curr.getDate() - curr.getDay()+1;
 
+
+    var firstDay = new Date(curr.setDate(first));
+    return firstDay;
+
+  }
+  getWeekEndDate(){
+    var curr = new Date();
+    var first = curr.getDate() - curr.getDay()+1;
+    var last = first +6;
+
+    var lastDay = new Date(curr.setDate(last));
+    return lastDay;
+  }
+
+getDays(){
+  var days: any[] = new Array();
+  var curDate = new Date();
+  //curDate.setDate(curDate.getDate()+4);
+  var curDay = curDate.getDay()-1;
+  console.log(curDay);
+  for(var i = 0; i < 7; i++){
+    if(i < curDay){
+      days.push({
+        "dayMaxTime": this.userDataThisWeek.,
+        "dayLeftTime": -10
+      });
+    }
+    if(i > curDay){
+      days.push({
+        "dayMaxTime": this.getTimeSettings().hoursPerDay,
+        "dayLeftTime": this.getTimeSettings().hoursPerDay
+      });
+    }
+    if(i == curDay){
+      days.push({
+        "dayMaxTime": this.getTimeSettings().hoursPerDay,
+        "dayLeftTime": this.timeLeftDay
+      });
+
+    }
+    //days.push();
+  }
+  console.log(days);
+ return days;
+}
 
 }
