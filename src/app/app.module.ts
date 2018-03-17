@@ -12,7 +12,7 @@ import {LoadFileDataService} from './services/load-file-data.service';
 import {WriteFileDataService} from './services/write-file-data.service';
 import {MeasureRunTimeService } from './services/measure-run-time.service';
 import {TrackProgramsService} from './services/track-programs.service';
-
+import { DatabaseService } from './services/database.service';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -79,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [    ElectronService, SharedVariablesService,
      LoadFileDataService, WriteFileDataService,
      MeasureRunTimeService, TrackProgramsService, NotificationService,
+     DatabaseService
 
     ],
   bootstrap: [AppComponent]

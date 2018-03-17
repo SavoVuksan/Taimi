@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SharedVariablesService} from './services/shared-variables.service';
 import { NotificationService} from './services/notification.service';
 import { WriteFileDataService } from "./services/write-file-data.service";
+import { DatabaseService } from './services/database.service';
 import {Observable} from 'rxjs/Rx';
 
 //Electron functions
@@ -15,7 +16,7 @@ let BrowserWindow = remote.BrowserWindow;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent{
 
@@ -23,19 +24,14 @@ export class AppComponent{
     private translate: TranslateService,
     private sharedVariables : SharedVariablesService,
     private notificationService:NotificationService,
-    private writeToFile: WriteFileDataService) {
-      console.log("Filepath: "+app.getPath('documents'));
-
-
-
+    private writeToFile: WriteFileDataService,
+    private database: DatabaseService) {
     translate.setDefaultLang('en');
     //this.notificationService.showSmallNotification("Notification",
     //"All kitties are saved now, well not all but all kitties in your local area. Next step ist to save the puppies.");
-    this.sharedVariables.loadtimeSettings();
-
-
+    //this.sharedVariables.loadtimeSettings();
     //this.sharedVariables.setTimeLeftWeek(0);
-    this.sharedVariables.meausureTime();
+
     /*
     if (electronService.isElectron()) {
       console.log('Mode electron');
@@ -46,28 +42,16 @@ export class AppComponent{
     } else {
       console.log('Mode web');
     }*/
-  this.saveUserData();
+    this.database.getSettings();
+    this.sharedVariables.meausureTime();
+    this.database.existsToday().subscribe((returnvalue) =>{
+      this.database.todayExists = returnvalue;
+    this.database.persistToday();
+    });
+    this.database.loadToday();
+
 
   }
-  saveUserData(){
-      let timer = Observable.timer(0,10000);
-      timer.subscribe(t =>{
-        console.log(this.sharedVariables);
-        this.writeToFile.saveUserData(
-          {
-            "weekMaxTime": this.sharedVariables.getTimeSettings().hoursPerWeek,
-            "weekLeftTime": this.sharedVariables.getTimeLeftWeek(),
-            "weekStartDate": this.sharedVariables.getWeekStartDate(),
-            "weekEndDate": this.sharedVariables.getWeekEndDate(),
-            "days": this.sharedVariables.getDays()
-          }
-          ,"test");
-          
-      });
-
-  }
-
-
 
 
 }

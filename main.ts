@@ -1,5 +1,8 @@
 import { app, BrowserWindow, screen,Menu,Tray } from 'electron';
 import * as path from 'path';
+
+
+
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
@@ -11,6 +14,8 @@ if (serve) {
   require('electron-reload')(__dirname, {
   });
 }
+
+
 
 
 function createWindow() {
@@ -44,7 +49,7 @@ function createWindow() {
   ]);
   appIcon.setContextMenu(contextMenu);
   appIcon.on('click',function(){
-    console.log("hhlsdlsf");
+
     win.show();
   });
   // Open the DevTools.

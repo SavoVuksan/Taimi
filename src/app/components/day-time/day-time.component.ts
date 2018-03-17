@@ -22,11 +22,11 @@ export class DayTimeComponent implements OnInit {
     let maxTime;
     let restTime;
     if (this.type == "Day") {
-      maxTime = this.sharedVars.getTimeSettings().hoursPerDay;
+      maxTime = this.sharedVars.getHoursPerDay();
       restTime = this.sharedVars.getTimeLeftDay();
 
     } else {
-      maxTime = this.sharedVars.getTimeSettings().hoursPerWeek;
+      maxTime = this.sharedVars.getHoursPerWeek();
       restTime = this.sharedVars.getTimeLeftWeek();
     }
     let wastedTime = maxTime - restTime;

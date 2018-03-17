@@ -3,24 +3,63 @@ import {LoadFileDataService} from './load-file-data.service';
 import {WriteFileDataService} from './write-file-data.service';
 import {MeasureRunTimeService } from '../services/measure-run-time.service';
 import {NotificationService } from '../services/notification.service';
-import {Observable} from 'rxjs/Rx';
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
 
 @Injectable()
 export class SharedVariablesService {
 
-  private timeSettings:any; //all time settings
+  private timeSettings = new BehaviorSubject<any>(1); //all time settings
   private time:number; //Time the computer is already running
-  private timeLeftDay:number; //The Time left Today
+  timeLeftDay:number; //The Time left Today
   private timeLeftWeek:number; //The Time already used this week start Mo-So
   private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
   private navigatorVisible: boolean;//Sets the Navigator Visibility
   private userDataThisWeek: any;
+
+  private hoursPerDay: number;
+  private leftHours: number;
+  private hoursPerWeek: number;
+  private notificationsOn: boolean;
+  private lockPCOn: boolean;
 
   constructor(private loadFileDataService : LoadFileDataService,
     private writeFileDataService: WriteFileDataService,
     private measureRunTimeService : MeasureRunTimeService,
     private notificationService: NotificationService) {
       this.navigatorVisible = false;
+    }
+
+    setLeftHours(hours: number){
+      this.leftHours = hours;
+    }
+
+    setHoursPerDay(hours: number){
+      this.hoursPerDay = hours;
+    }
+    setHoursPerWeek(hours: number){
+      this.hoursPerWeek = hours;
+    }
+    setNotifications(on: boolean){
+      this.notificationsOn = on;
+    }
+    setLockPC(on: boolean){
+      this.notificationsOn = on;
+    }
+
+    getLeftHours(){
+      return this.leftHours;
+    }
+    getHoursPerDay(){
+      return this.hoursPerDay;
+    }
+    getHoursPerWeek(){
+        return this.hoursPerWeek;
+    }
+    getNotifications(){
+        return this.notificationsOn;
+    }
+    getLockPC(){
+        return this.lockPCOn;
     }
 
 
@@ -35,15 +74,7 @@ export class SharedVariablesService {
       this.navigatorVisible = visible;
     }
 
-  loadtimeSettings(){
-    this.timeSettings = {};
-    this.loadFileDataService.getFileData(this.timeSettingsJsonURL)
-      .subscribe(data => {
-        this.timeSettings = data;
 
-      });
-
-  }
 
   writeTimeSettings()
   {
@@ -61,15 +92,14 @@ export class SharedVariablesService {
         this.timeLeftDay = 0;
       }else
       {
-        this.timeLeftDay = this.timeSettings.hoursPerDay - this.time;
+        this.timeLeftDay = this.hoursPerDay - this.time;
       }
       if(this.timeLeftWeek <= 0){
         this.timeLeftWeek = 0;
       }else{
-        console.log(this.timeSettings.weekMaxTime);
-        this.timeLeftWeek = this.timeSettings.hoursPerWeek - this.time;
+        this.timeLeftWeek = this.hoursPerWeek - this.time;
       }
-      if(this.time >= this.timeSettings.hoursPerDay)
+      if(this.time >= this.hoursPerDay)
       {
         //this.notificationService.showTimeIsUpNotification();
       }
@@ -78,11 +108,12 @@ export class SharedVariablesService {
 
   setTimeSettings(timeSettings)
   {
-    this.timeSettings = timeSettings;
+    this.timeSettings.next(timeSettings);
+
   }
   getTimeSettings()
   {
-    return this.timeSettings;
+    return this.timeSettings.asObservable();
   }
 
   setTime(time)
@@ -98,6 +129,7 @@ export class SharedVariablesService {
   {
     this.timeLeftDay = timeLeftDay;
   }
+
   getTimeLeftDay()
   {
     return this.timeLeftDay;
@@ -133,30 +165,28 @@ getDays(){
   var curDate = new Date();
   //curDate.setDate(curDate.getDate()+4);
   var curDay = curDate.getDay()-1;
-  console.log(curDay);
   for(var i = 0; i < 7; i++){
     if(i < curDay){
       days.push({
-        "dayMaxTime": this.userDataThisWeek.,
+        "dayMaxTime": this.userDataThisWeek,
         "dayLeftTime": -10
       });
     }
     if(i > curDay){
       days.push({
-        "dayMaxTime": this.getTimeSettings().hoursPerDay,
-        "dayLeftTime": this.getTimeSettings().hoursPerDay
+        "dayMaxTime": this.timeSettings.getValue().hoursPerDay,
+        "dayLeftTime": this.timeSettings.getValue().hoursPerDay
       });
     }
     if(i == curDay){
       days.push({
-        "dayMaxTime": this.getTimeSettings().hoursPerDay,
+        "dayMaxTime": this.timeSettings.getValue().hoursPerDay,
         "dayLeftTime": this.timeLeftDay
       });
 
     }
     //days.push();
   }
-  console.log(days);
  return days;
 }
 
