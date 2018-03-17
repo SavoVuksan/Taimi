@@ -7,33 +7,8 @@ let connection;
 @Injectable()
 export class DatabaseService {
 
-  currentDate;
-  day;
-  diff;
-  weekStartDate;
-  weekEndDate;
-  today;
-
-  currentWeekExists : boolean;
-  todayExists: boolean;
-
   constructor(private sharedVariables : SharedVariablesService) {
-    //INIT VARS
-    this.today = new Date();
-    this.currentDate = new Date();
-    this.day = this.currentDate.getDay();
-    this.diff = this.currentDate.getDate() - this.day +(this.day == 0 ? -6:1);
-    this.weekStartDate = new Date(this.currentDate.setDate(this.diff));
-    this.weekEndDate = new Date();
-    this.weekEndDate.setDate(this.weekStartDate.getDate() + 6);
-
-    //When sunday set the day from 0 to 7
-    this.day = (this.day == 0 ? 7:this.day);
-
-    this.currentWeekExists = false;
-    this.todayExists = false;
-
-    //CREATE CONNECTION OBJECT WITH INFORMATIONS
+      //CREATE CONNECTION OBJECT WITH INFORMATIONS
     connection = mysql.createConnection({
       host: 'localhost',
       path: '/taimidb',
@@ -57,11 +32,10 @@ export class DatabaseService {
 
   }
 
-  existsToday(): Observable<boolean>{
+  observeExistsTodayInDB(): Observable<boolean>{
     return new Observable((observer) =>{
       let query = "select date from day where date = '"+
-      this.today.toISOString().split('T')[0]+"'";
-      console.log(query);
+      this.sharedVariables.getToday().toISOString().split('T')[0]+"'";
       connection.query(query,(err,rows,fields) =>{
 
           if(rows.length < 1){
@@ -76,28 +50,33 @@ export class DatabaseService {
   }
 
   loadToday(){
-    let query  = "select * from day where date = '"+this.today.toISOString().split('T')[0]+"'";
+    let query  = "select * from day where date = '"+this.sharedVariables.getToday().toISOString().split('T')[0]+"'";
     connection.query(query,(err,rows,fields) =>{
       if(rows.length > 0 ){
 
-        this.sharedVariables.setHoursPerDay(rows[0].leftTime);
+        this.sharedVariables.setTodayTimeLeft(rows[0].leftTime);
+
+        this.sharedVariables.setWeekTimeLeft(
+          ((7 - (this.sharedVariables.getDayOfTheWeek()-1))*this.sharedVariables.getTodayTimeMax())-
+        (this.sharedVariables.getTodayTimeMax()-this.sharedVariables.getTodayTimeLeft()));
       }
     });
   }
 
   persistToday(){
     let query = "";
-    console.log("TodayExists: " + this.todayExists);
-    if(this.todayExists){
-      query = "update day set leftTime = "+this.sharedVariables.getHoursPerDay()+
-      " where date = '" + this.today.toISOString().split('T')[0]+"'";
+    if(this.sharedVariables.getExistsTodayInDB()){
+      query = "update day set leftTime = "+this.sharedVariables.getTodayTimeLeft()+
+      " where date = '" + this.sharedVariables.getToday().toISOString().split('T')[0]+"'";
 
       connection.query(query,(err,rows,fields) =>{
 
       });
     }else{
       query = "insert into day (maxTime,leftTime,Date) values("
-      +this.sharedVariables.getHoursPerDay()+","+this.sharedVariables.getTimeLeftDay()+",'"+this.today.toISOString().split('T')[0]+"')";
+      +this.sharedVariables.getTodayTimeMax()+","
+      +this.sharedVariables.getTodayTimeLeft()+",'"
+      +this.sharedVariables.getToday().toISOString().split('T')[0]+"')";
       console.log(query);
       connection.query(query,(err,rows,fields) =>{
 
@@ -106,16 +85,15 @@ export class DatabaseService {
 
   }
 
-  getSettings(){
+  loadUserSettings(){
     let query = "select * from settings";
 
     connection.query(query,(err,rows,fields) => {
-      this.sharedVariables.setHoursPerDay(rows[0].hoursperday);
-      this.sharedVariables.setHoursPerWeek(rows[0].hoursperweek);
-      this.sharedVariables.setNotifications((rows[0].notificationson == 0 ? false:true));
-      this.sharedVariables.setLockPC((rows[0].lockpcon == 0 ? false:true));
-      this.sharedVariables.timeLeftDay = rows[0].hoursPerDay;
-      console.log(this.sharedVariables.timeLeftDay);
+      this.sharedVariables.setTodayTimeMax(rows[0].hoursperday);
+      this.sharedVariables.setWeekTimeMax(this.sharedVariables.getTodayTimeMax()*7);
+      this.sharedVariables.setNotificationOn((rows[0].notificationson == 0 ? false:true));
+      this.sharedVariables.setLockPCOn((rows[0].lockpcon == 0 ? false:true));
+      this.sharedVariables.setTodayTimeLeft(this.sharedVariables.getTodayTimeMax());
 
     });
   }

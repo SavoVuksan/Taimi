@@ -1,193 +1,136 @@
 import { Injectable } from '@angular/core';
-import {LoadFileDataService} from './load-file-data.service';
-import {WriteFileDataService} from './write-file-data.service';
-import {MeasureRunTimeService } from '../services/measure-run-time.service';
-import {NotificationService } from '../services/notification.service';
-import {Observable, BehaviorSubject} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class SharedVariablesService {
 
-  private timeSettings = new BehaviorSubject<any>(1); //all time settings
-  private time:number; //Time the computer is already running
-  timeLeftDay:number; //The Time left Today
-  private timeLeftWeek:number; //The Time already used this week start Mo-So
-  private timeSettingsJsonURL = '../src/app/config/timeSettings.json';
-  private navigatorVisible: boolean;//Sets the Navigator Visibility
-  private userDataThisWeek: any;
+  //CONST
+  public deltaTime:number  = 100;
 
-  private hoursPerDay: number;
-  private leftHours: number;
-  private hoursPerWeek: number;
-  private notificationsOn: boolean;
-  private lockPCOn: boolean;
+  //USER SETTINGS
+  private todayTimeMax:number;
+  private todayTimeLeft:number;
+  private weekTimeMax:number;
+  private weekTimeLeft:number;
+  private notificationOn:boolean;
+  private lockPCOn:boolean;
 
-  constructor(private loadFileDataService : LoadFileDataService,
-    private writeFileDataService: WriteFileDataService,
-    private measureRunTimeService : MeasureRunTimeService,
-    private notificationService: NotificationService) {
-      this.navigatorVisible = false;
+  //PROGRAM VARS
+  private today:Date;
+  private weekStartDate:Date;
+  private dayOfTheWeek:number;
+  private existsTodayInDB:boolean;
+  private runTime:number;
+
+  constructor() {
+    //INIT USERSETTINGS
+    this.todayTimeMax = 0;
+    this.todayTimeLeft = 0;
+    this.weekTimeMax = 0;
+    this.weekTimeLeft = 0;
+    this.notificationOn = false;
+    this.lockPCOn = false;
+
+    //INIT PROGRAM VARS
+    this.today = new Date();
+    this.weekStartDate =new Date(new Date().setDate(this.today.getDate() - this.today.getDay() + (this.today.getDay() == 0 ? -6:1)));
+    this.dayOfTheWeek = (this.today.getDay() == 0 ? 7 : this.today.getDay());
+    this.existsTodayInDB = false;
+    this.runTime = 0;
+
+
+
     }
 
-    setLeftHours(hours: number){
-      this.leftHours = hours;
-    }
+    valueObservable():Observable<string>{
+      return new Observable((observer) =>{
+        setInterval(() =>{
+          observer.next("TodayMax: " + this.todayTimeMax+" TodayLeft: "+ this.todayTimeLeft+" WeekMax: " + this.weekTimeMax+" WeekLeft: " +
+          this.weekTimeLeft + " NotificationOn: " + this.notificationOn +" LockPC: "+ this.lockPCOn+ " WeekStartDate: "
+          + this.weekStartDate + " DayOfTheWeek: " + this.dayOfTheWeek);
+        },100);
 
-    setHoursPerDay(hours: number){
-      this.hoursPerDay = hours;
-    }
-    setHoursPerWeek(hours: number){
-      this.hoursPerWeek = hours;
-    }
-    setNotifications(on: boolean){
-      this.notificationsOn = on;
-    }
-    setLockPC(on: boolean){
-      this.notificationsOn = on;
-    }
-
-    getLeftHours(){
-      return this.leftHours;
-    }
-    getHoursPerDay(){
-      return this.hoursPerDay;
-    }
-    getHoursPerWeek(){
-        return this.hoursPerWeek;
-    }
-    getNotifications(){
-        return this.notificationsOn;
-    }
-    getLockPC(){
-        return this.lockPCOn;
-    }
-
-
-    toggleNavigator(){
-      this.navigatorVisible = !this.navigatorVisible;
-      return this.navigatorVisible;
-    }
-    getnavigatorVisibility(){
-      return this.navigatorVisible;
-    }
-    setNavigatorVisibility(visible: boolean){
-      this.navigatorVisible = visible;
-    }
-
-
-
-  writeTimeSettings()
-  {
-    this.writeFileDataService.writeToFile(
-      this.timeSettings,'./src/app/config','timeSettings.json');
-  }
-
-  meausureTime(){
-    let timer = Observable.timer(0,100);
-    timer.subscribe(t =>{
-      this.time = +this.measureRunTimeService.measureTime().toFixed(2);
-
-      if(this.timeLeftDay <= 0)
-      {
-        this.timeLeftDay = 0;
-      }else
-      {
-        this.timeLeftDay = this.hoursPerDay - this.time;
-      }
-      if(this.timeLeftWeek <= 0){
-        this.timeLeftWeek = 0;
-      }else{
-        this.timeLeftWeek = this.hoursPerWeek - this.time;
-      }
-      if(this.time >= this.hoursPerDay)
-      {
-        //this.notificationService.showTimeIsUpNotification();
-      }
-    } );
-  }
-
-  setTimeSettings(timeSettings)
-  {
-    this.timeSettings.next(timeSettings);
-
-  }
-  getTimeSettings()
-  {
-    return this.timeSettings.asObservable();
-  }
-
-  setTime(time)
-  {
-    this.time = time;
-  }
-  getTime()
-  {
-    return this.time;
-  }
-
-  setTimeLeftDay(timeLeftDay)
-  {
-    this.timeLeftDay = timeLeftDay;
-  }
-
-  getTimeLeftDay()
-  {
-    return this.timeLeftDay;
-  }
-  setTimeLeftWeek(timeLeftWeek)
-  {
-    this.timeLeftWeek = timeLeftWeek;
-  }
-  getTimeLeftWeek()
-  {
-    return this.timeLeftWeek;
-  }
-  getWeekStartDate(){
-    var curr = new Date();
-    var first = curr.getDate() - curr.getDay()+1;
-
-
-    var firstDay = new Date(curr.setDate(first));
-    return firstDay;
-
-  }
-  getWeekEndDate(){
-    var curr = new Date();
-    var first = curr.getDate() - curr.getDay()+1;
-    var last = first +6;
-
-    var lastDay = new Date(curr.setDate(last));
-    return lastDay;
-  }
-
-getDays(){
-  var days: any[] = new Array();
-  var curDate = new Date();
-  //curDate.setDate(curDate.getDate()+4);
-  var curDay = curDate.getDay()-1;
-  for(var i = 0; i < 7; i++){
-    if(i < curDay){
-      days.push({
-        "dayMaxTime": this.userDataThisWeek,
-        "dayLeftTime": -10
       });
     }
-    if(i > curDay){
-      days.push({
-        "dayMaxTime": this.timeSettings.getValue().hoursPerDay,
-        "dayLeftTime": this.timeSettings.getValue().hoursPerDay
-      });
-    }
-    if(i == curDay){
-      days.push({
-        "dayMaxTime": this.timeSettings.getValue().hoursPerDay,
-        "dayLeftTime": this.timeLeftDay
-      });
 
+    getDayOfTheWeek(){
+      return this.dayOfTheWeek;
     }
-    //days.push();
-  }
- return days;
-}
+    setDayOfTheWeek(dotw:number){
+      this.dayOfTheWeek = dotw;
+    }
+    getWeekStartDate(){
+      return this.weekStartDate;
+    }
+    setWeekStartDate(date: Date){
+      this.weekStartDate = date;
+    }
+
+    getRunTime(){
+      return this.runTime;
+    }
+    setRunTime(time:number){
+      this.runTime = time;
+    }
+
+    getExistsTodayInDB(){
+      return this.existsTodayInDB;
+    }
+    setExistsTodayInDB(exists:boolean){
+      this.existsTodayInDB = exists;
+    }
+
+    getToday(){
+      return this.today;
+    }
+    setToday(date:Date){
+      this.today = date;
+    }
+
+    getTodayTimeMax(){
+      return this.todayTimeMax;
+    }
+    getTodayTimeLeft(){
+      return this.todayTimeLeft;
+    }
+    getWeekTimeMax(){
+      return this.weekTimeMax;
+    }
+    getWeekTimeLeft(){
+      return this.weekTimeLeft;
+    }
+    getNotificationOn(){
+      return this.notificationOn;
+    }
+    getLockPCOn(){
+      return this.lockPCOn;
+    }
+
+    setTodayTimeMax(hours:number){
+      this.todayTimeMax = hours;
+    }
+    setTodayTimeLeft(hours:number){
+      if(hours > 0){
+      this.todayTimeLeft = hours;
+    }else{
+      this.todayTimeLeft = 0;
+    }
+    }
+    setWeekTimeMax(hours:number){
+      this.weekTimeMax = hours;
+    }
+    setWeekTimeLeft(hours:number){
+      if(hours > 0){
+      this.weekTimeLeft = hours;
+    }else{
+      this.weekTimeLeft = 0;
+    }
+    }
+    setNotificationOn(on:boolean){
+      this.notificationOn = on;
+    }
+    setLockPCOn(on:boolean){
+      this.lockPCOn = on;
+    }
 
 }

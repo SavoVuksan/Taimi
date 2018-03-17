@@ -3,7 +3,6 @@ import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedVariablesService} from './services/shared-variables.service';
 import { NotificationService} from './services/notification.service';
-import { WriteFileDataService } from "./services/write-file-data.service";
 import { DatabaseService } from './services/database.service';
 import {Observable} from 'rxjs/Rx';
 
@@ -24,7 +23,6 @@ export class AppComponent{
     private translate: TranslateService,
     private sharedVariables : SharedVariablesService,
     private notificationService:NotificationService,
-    private writeToFile: WriteFileDataService,
     private database: DatabaseService) {
     translate.setDefaultLang('en');
     //this.notificationService.showSmallNotification("Notification",
@@ -42,15 +40,29 @@ export class AppComponent{
     } else {
       console.log('Mode web');
     }*/
-    this.database.getSettings();
-    this.sharedVariables.meausureTime();
-    this.database.existsToday().subscribe((returnvalue) =>{
-      this.database.todayExists = returnvalue;
-    this.database.persistToday();
-    });
+    this.database.loadUserSettings();
+    //this.sharedVariables.meausureTime();
     this.database.loadToday();
 
+    this.persistLoop();
+    this.measureTimeLoop();
+  }
+  measureTimeLoop(){
+    setInterval(() =>{
+      this.sharedVariables.setRunTime(this.sharedVariables.getRunTime()+this.sharedVariables.deltaTime);
+      this.sharedVariables.setTodayTimeLeft(this.sharedVariables.getTodayTimeLeft()-(this.sharedVariables.deltaTime/1000/60/60));
+      this.sharedVariables.setWeekTimeLeft(this.sharedVariables.getWeekTimeLeft()-(this.sharedVariables.deltaTime/1000/60/60));
 
+    },this.sharedVariables.deltaTime);
+  }
+  persistLoop(){
+    this.database.observeExistsTodayInDB().subscribe((returnvalue) =>{
+      this.sharedVariables.setExistsTodayInDB(returnvalue);
+
+    });
+    setInterval(() =>{
+      this.database.persistToday();
+    },10000 );
   }
 
 

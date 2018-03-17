@@ -43,6 +43,7 @@ function createWindow() {
     }},
     {
       label: 'Quit',click: function(){
+          console.log("WINDOW IS CLOSING...");
         app.exit(0);
       }
   }
@@ -62,6 +63,7 @@ function createWindow() {
   appIcon.setHighlightMode('always');
 })
   win.on('close', (event) => {
+
   event.preventDefault();
   win.hide();
 

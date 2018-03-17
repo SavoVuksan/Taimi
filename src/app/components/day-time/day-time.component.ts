@@ -22,12 +22,12 @@ export class DayTimeComponent implements OnInit {
     let maxTime;
     let restTime;
     if (this.type == "Day") {
-      maxTime = this.sharedVars.getHoursPerDay();
-      restTime = this.sharedVars.getTimeLeftDay();
+      maxTime = this.sharedVars.getTodayTimeMax();
+      restTime = this.sharedVars.getTodayTimeLeft();
 
     } else {
-      maxTime = this.sharedVars.getHoursPerWeek();
-      restTime = this.sharedVars.getTimeLeftWeek();
+      maxTime = this.sharedVars.getWeekTimeMax();
+      restTime = this.sharedVars.getWeekTimeLeft();
     }
     let wastedTime = maxTime - restTime;
     let perCent = maxTime / 100;
@@ -35,9 +35,9 @@ export class DayTimeComponent implements OnInit {
   }
   getLeftTime() {
     if (this.type == "Day") {
-      return Math.round(this.sharedVars.getTimeLeftDay());
+      return Math.round(this.sharedVars.getTodayTimeLeft());
     } else {
-      return Math.round(this.sharedVars.getTimeLeftWeek());
+      return Math.round(this.sharedVars.getWeekTimeLeft());
     }
   }
 
