@@ -1,7 +1,7 @@
 <div class="navContainer" [@toggleNavigator]=navigatorVisible>
   <div class="navHeader">
     <h1>Bozo Vuksan</h1>
-    <h2>{{sharedVariables.getTimeLeftDay()}} Hours
+    <h2>{{sharedVariables.getTodayTimeLeft() | round}} Hours
        Left Today</h2>
   </div>
   <div class="navBody">

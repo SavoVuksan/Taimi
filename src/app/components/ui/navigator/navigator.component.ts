@@ -1,8 +1,10 @@
-import { Component, OnInit,Input,forwardRef,HostListener } from '@angular/core';
+import { Component, OnInit,Input,forwardRef,HostListener , Pipe} from '@angular/core';
 import { Router } from '@angular/router';
 import {trigger,state,style,animate,transition} from '@angular/animations';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SharedVariablesService} from '../../../services/shared-variables.service';
+import { RoundPipe } from '../../../round.pipe';
+
 
 @Component({
   selector: 'app-navigator',
@@ -56,7 +58,7 @@ export class NavigatorComponent implements ControlValueAccessor {
   {
     if(event.key == "Tab")
     {
-      this.sharedVariables.toggleNavigator();
+      this.sharedVariables.setNavigatorVisible(!this.sharedVariables.getNavigatorVisible());
       console.log("tabbed");
       if(!this.navigatorVisible)
       {
@@ -78,12 +80,12 @@ export class NavigatorComponent implements ControlValueAccessor {
 
   hideNavigator(){
     this.navigatorVisible = false;
-    this.sharedVariables.setNavigatorVisibility(false);
+    this.sharedVariables.setNavigatorVisible(false);
     this.propagateChange(this.navigatorVisible);
   }
   showNavigator(){
     this.navigatorVisible = true;
-    this.sharedVariables.setNavigatorVisibility(true);
+    this.sharedVariables.setNavigatorVisible(true);
     this.propagateChange(this.navigatorVisible);
   }
   changeScreen(screenURL)

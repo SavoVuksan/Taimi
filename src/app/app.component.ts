@@ -19,6 +19,8 @@ let BrowserWindow = remote.BrowserWindow;
 })
 export class AppComponent{
 
+  private subscription:any;
+
   constructor(public electronService: ElectronService,
     private translate: TranslateService,
     private sharedVariables : SharedVariablesService,
@@ -58,10 +60,19 @@ export class AppComponent{
   persistLoop(){
     this.database.observeExistsTodayInDB().subscribe((returnvalue) =>{
       this.sharedVariables.setExistsTodayInDB(returnvalue);
+    });
+      setInterval(() =>{
+        this.subscription = this.database.observeExistsTodayInDB().subscribe((returnvalue) =>{
+
+      this.sharedVariables.setExistsTodayInDB(returnvalue);
+      this.subscription.unsubscribe();
 
     });
+
+  },11000);
     setInterval(() =>{
       this.database.persistToday();
+
     },10000 );
   }
 

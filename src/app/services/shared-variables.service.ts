@@ -13,7 +13,7 @@ export class SharedVariablesService {
   private weekTimeMax:number;
   private weekTimeLeft:number;
   private notificationOn:boolean;
-  private lockPCOn:boolean;
+  
 
   //PROGRAM VARS
   private today:Date;
@@ -21,6 +21,8 @@ export class SharedVariablesService {
   private dayOfTheWeek:number;
   private existsTodayInDB:boolean;
   private runTime:number;
+  private navigatorVisible:boolean;
+
 
   constructor() {
     //INIT USERSETTINGS
@@ -29,7 +31,7 @@ export class SharedVariablesService {
     this.weekTimeMax = 0;
     this.weekTimeLeft = 0;
     this.notificationOn = false;
-    this.lockPCOn = false;
+
 
     //INIT PROGRAM VARS
     this.today = new Date();
@@ -37,6 +39,7 @@ export class SharedVariablesService {
     this.dayOfTheWeek = (this.today.getDay() == 0 ? 7 : this.today.getDay());
     this.existsTodayInDB = false;
     this.runTime = 0;
+    this.navigatorVisible = false;
 
 
 
@@ -46,11 +49,18 @@ export class SharedVariablesService {
       return new Observable((observer) =>{
         setInterval(() =>{
           observer.next("TodayMax: " + this.todayTimeMax+" TodayLeft: "+ this.todayTimeLeft+" WeekMax: " + this.weekTimeMax+" WeekLeft: " +
-          this.weekTimeLeft + " NotificationOn: " + this.notificationOn +" LockPC: "+ this.lockPCOn+ " WeekStartDate: "
+          this.weekTimeLeft + " NotificationOn: " + this.notificationOn + " WeekStartDate: "
           + this.weekStartDate + " DayOfTheWeek: " + this.dayOfTheWeek);
         },100);
 
       });
+    }
+
+    getNavigatorVisible(){
+      return this.navigatorVisible;
+    }
+    setNavigatorVisible(visible: boolean){
+      this.navigatorVisible = visible;
     }
 
     getDayOfTheWeek(){
@@ -102,9 +112,7 @@ export class SharedVariablesService {
     getNotificationOn(){
       return this.notificationOn;
     }
-    getLockPCOn(){
-      return this.lockPCOn;
-    }
+
 
     setTodayTimeMax(hours:number){
       this.todayTimeMax = hours;
@@ -129,8 +137,6 @@ export class SharedVariablesService {
     setNotificationOn(on:boolean){
       this.notificationOn = on;
     }
-    setLockPCOn(on:boolean){
-      this.lockPCOn = on;
-    }
+
 
 }

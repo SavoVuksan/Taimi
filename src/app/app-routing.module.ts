@@ -1,4 +1,4 @@
-import { HomeComponent } from './components/home/home.component';
+import { HomescreenComponent } from './components/homescreen/homescreen.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
+        component: HomescreenComponent
     },
     {
         path: 'settings',
@@ -15,7 +15,7 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent
+        component: HomescreenComponent
     }
 ];
 

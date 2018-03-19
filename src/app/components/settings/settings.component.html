@@ -1,36 +1,33 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col nav">
-      <img (click)=toggleNavigator() class="settingsNav"
-      src="../../../assets/images/nav.png" alt="">
-      <h1 class="heading">SETTINGS</h1>
+      <app-burger-menu></app-burger-menu>
     </div>
   </div>
   <div class="row fullHeight">
     <div class="col settingsContainer">
-      <form #form="ngForm" (ngSubmit)="submit(form.value)" (change)=sharedVariables.writeTimeSettings()>
+      <form #form="ngForm" (ngSubmit)="submit(form.value)"  >
         <h2>Hours per day</h2>
         <app-slider name="hourSlider" [sliderMin]=MinHoursPerDay
-         [sliderMax]=MaxHoursPerDay [sliderValue]=sharedVariables.getTimeSettings().hoursPerDay
-         [(ngModel)]=sharedVariables.getTimeSettings().hoursPerDay > </app-slider>
-        <hr>
-
-        <h2>Hours per Week</h2>
-        <app-slider name="weekSlider" [sliderMin]=MinHoursPerWeek
-        [sliderMax]=MaxHoursPerWeek [sliderValue]=sharedVariables.getTimeSettings().hoursPerWeek
-        [(ngModel)]=sharedVariables.getTimeSettings().hoursPerWeek > </app-slider>
+         [sliderMax]=MaxHoursPerDay [sliderValue]=sharedVariables.getTodayTimeMax()
+         [ngModel]="sharedVariables.getTodayTimeMax()" (ngModelChange)="setMaxTime($event)"
+          (ngModelChange)="database.persistUserSettings()"> </app-slider>
         <hr>
 
         <h2 >Notification</h2>
-        <app-toggle (click)=sharedVariables.writeTimeSettings() name="notificationToggle"
-        [toggle]=sharedVariables.getTimeSettings().notificationsOn
-        [(ngModel)]=sharedVariables.getTimeSettings().notificationsOn></app-toggle>
+        <app-toggle name="notificationToggle"
+        [toggle]=sharedVariables.getNotificationOn()
+        [ngModel]="sharedVariables.getNotificationOn()" (ngModelChange)="sharedVariables.setNotificationOn($event)"
+        (ngModelChange)="database.persistUserSettings()">
+        </app-toggle>
         <hr>
 
-        <h2>Lock PC</h2>
-        <app-toggle (click)=sharedVariables.writeTimeSettings() name="lockPCOnToggle"
-        [toggle]=sharedVariables.getTimeSettings().lockPCOn
-        [(ngModel)]=sharedVariables.getTimeSettings().lockPCOn></app-toggle>
+        <h2>Reset Todays Time</h2>
+        <app-toggle name="resetTimeToggle"
+        [toggle]="false"
+        [ngModel]="false" (ngModelChange)="resetTime($event)">
+        </app-toggle>
+
       </form>
     </div>
   </div>

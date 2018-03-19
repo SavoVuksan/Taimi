@@ -35,6 +35,8 @@ import { HomeClockComponent } from './components/home-clock/home-clock.component
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
 import { DayTimeComponent } from './components/day-time/day-time.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { RoundPipe } from './round.pipe';
+import { HomescreenComponent } from './components/homescreen/homescreen.component';
 
 
 // AoT requires an exported function for factories
@@ -57,7 +59,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeClockComponent,
     BurgerMenuComponent,
     DayTimeComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RoundPipe,
+    HomescreenComponent
   ],
   imports: [
     BrowserModule,
