@@ -2,6 +2,7 @@ import { HomescreenComponent } from './components/homescreen/homescreen.componen
 import { SettingsComponent } from './components/settings/settings.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProgramsComponent } from './components/programs/programs.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomescreenComponent
+    },
+    {
+        path: 'programs',
+        component: ProgramsComponent
     }
 ];
 

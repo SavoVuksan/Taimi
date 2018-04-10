@@ -37,6 +37,9 @@ import { DayTimeComponent } from './components/day-time/day-time.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { RoundPipe } from './round.pipe';
 import { HomescreenComponent } from './components/homescreen/homescreen.component';
+import { ProgramsComponent } from './components/programs/programs.component';
+import { ListComponent } from './components/list/list.component';
+import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
 
 
 // AoT requires an exported function for factories
@@ -61,7 +64,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     DayTimeComponent,
     ProgressBarComponent,
     RoundPipe,
-    HomescreenComponent
+    HomescreenComponent,
+    ProgramsComponent,
+    ListComponent,
+    PointToggleComponent
   ],
   imports: [
     BrowserModule,

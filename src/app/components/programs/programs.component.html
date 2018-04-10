@@ -1,0 +1,41 @@
+<div class="container-fluid programsContainer">
+
+<div class="row header">
+  <div class="verticalCentered">
+    <app-burger-menu></app-burger-menu>
+
+  </div>
+  <h1>
+      Lock Programs
+</h1>
+</div>
+<div class="row buttons">
+  <div class="col buttonContainer">
+    <p>Track all Programs</p>
+    <app-toggle></app-toggle>
+  </div>
+  <div class="col buttonContainer">
+      <p>Block all Programs</p>
+      <app-toggle></app-toggle>
+  </div>
+  <div class="col buttonContainer">
+      <p>add Program</p>
+      <div class="btn">
+        <p>
+        ADD
+        </p>
+      </div>
+  </div>
+  <div class="col-2">
+
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-list [listElements]="list"></app-list>
+    </div>
+</div>
+<!--<div class="listContainer">
+
+</div>!-->
+</div>

@@ -1,0 +1,44 @@
+<div class="listContainer">
+<div class="row bottomBorder">
+  <div class="col">
+    <p>
+    Name
+    </p>
+  </div>
+  <div class="col ">
+    <p class="leftBorder">
+    Tracking
+    </p>
+  </div>
+  <div class="col">
+    <p class="leftBorder">
+    Blocking
+    </p>
+  </div>
+
+</div>
+
+<div class="row" *ngFor="let item of listElements">
+  
+  <div class="col">
+    <p>
+    {{item.name}}
+    </p>
+  </div>
+  <div class="col centerContent">
+    <div>
+    <app-point-toggle ></app-point-toggle>
+    </div>
+  </div>
+  <div class="col centerContent">
+      <div>
+      <app-point-toggle [(toggle)]="item.blocked"></app-point-toggle>
+      </div>
+
+        <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
+
+    </div>
+
+
+</div>
+</div>
