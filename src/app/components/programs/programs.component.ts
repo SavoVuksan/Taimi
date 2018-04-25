@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Program } from '../../interfaces/program';
+import {ProgramService} from '../../services/program.service';
+
 
 @Component({
   selector: 'app-programs',
@@ -7,54 +9,20 @@ import { Program } from '../../interfaces/program';
   styleUrls: ['./programs.component.scss']
 })
 export class ProgramsComponent implements OnInit {
-  list: Program[];
-  constructor() { }
 
-  ngOnInit() {
-    this.fillListWithTestData();
+
+  toggleBlockAll: boolean;
+  toggleTrackAll: boolean;
+
+  constructor(public programService: ProgramService ) {
+    this.toggleBlockAll = false;
+    this.toggleTrackAll = false;
+
   }
 
-  fillListWithTestData(){
+  ngOnInit() {
 
-    this.list = new Array<Program>();
-
-    this.list.push({
-      "name": "Atom",
-      "path" : "./",
-      "running": false,
-      "runTime": 1,
-      "day": undefined,
-      "blocked": false,
-      "tracking": false
-    });
-    this.list.push({
-      "name": "Chrome",
-      "path" : "./",
-      "running": false,
-      "runTime": 1,
-      "day": undefined,
-      "blocked": false,
-      "tracking": false
-    });
-    this.list.push({
-      "name": "Unity",
-      "path" : "./",
-      "running": false,
-      "runTime": 1,
-      "day": undefined,
-      "blocked": false,
-      "tracking": false
-    });
-    this.list.push({
-      "name": "Spotify",
-      "path" : "./",
-      "running": false,
-      "runTime": 1,
-      "day": undefined,
-      "blocked": false,
-      "tracking": false
-    });
-
+    this.programService.executeTasklist();
   }
 
 }

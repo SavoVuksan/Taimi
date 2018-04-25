@@ -19,7 +19,7 @@
 </div>
 
 <div class="row" *ngFor="let item of listElements">
-  
+
   <div class="col">
     <p>
     {{item.name}}
@@ -27,12 +27,12 @@
   </div>
   <div class="col centerContent">
     <div>
-    <app-point-toggle ></app-point-toggle>
+    <app-point-toggle [(toggle)]="item.tracking" [program]="item"  ></app-point-toggle>
     </div>
   </div>
   <div class="col centerContent">
       <div>
-      <app-point-toggle [(toggle)]="item.blocked"></app-point-toggle>
+      <app-point-toggle [(toggle)]="item.blocked" [program]="item"></app-point-toggle>
       </div>
 
         <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
