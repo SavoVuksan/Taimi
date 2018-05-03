@@ -42,7 +42,8 @@ export class PointToggleComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(change: SimpleChange){
-
+    this.toggle = change['toggle'].currentValue;
+    this.state = (this.toggle ? this.state = 'on' : this.state = 'off');
   }
   changeToggle(){
     this.toggle = !this.toggle;

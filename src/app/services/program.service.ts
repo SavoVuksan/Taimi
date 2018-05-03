@@ -6,16 +6,44 @@ import {DatabaseService} from './database.service';
 const {dialog} = require('electron').remote;
 
 
-
+// Service that handles the whole program tracking / blocking functionality
 @Injectable()
 export class ProgramService {
 
   tasklistOutput: string;
   programs: Program[];
+  blockAll: boolean;
+  trackAll: boolean;
 
   constructor(private database: DatabaseService) {
+    this.blockAll = false;
+    this.trackAll = false;
     this.tasklistOutput = '';
     this.programs = new Array<Program>();
+
+
+    // Start the check loop for Program running
+    setInterval(() => {
+        this.executeTasklist();
+        this.addRunTime(5000);
+        this.blockPrograms();
+    }, 5000);
+  }
+
+  // Changes every element to tracking/not tracking
+  toggleTrackAll(track: boolean){
+    for(let p of this.programs){
+      p.tracking = !track;
+    }
+    this.trackAll = !track;
+  }
+
+  // Changes every element to blocking/not blocking
+  toggleBlockAll(block: boolean){
+    for(let p of this.programs){
+      p.blocked = !block;
+    }
+    this.blockAll = !block;
   }
 
   // Executes the Command to check which program is currently running
@@ -46,13 +74,50 @@ export class ProgramService {
         const exeName = name[name.length - 1];
         const match = this.tasklistOutput.search(exeName);
 
-        if (match === -1){
-          console.log(`${p.name} isn't running currently`);
+        if (match !== -1){
+          p.running = true;
+        }else{
+          p.running = false;
         }
       }
 
+      // Resets output
+      this.tasklistOutput = '';
+
     });
 
+  }
+
+  // Blocks programs via a command
+  blockPrograms(){
+    for (let p of this.programs){
+
+      if (p.blocked && p.running){
+        const splittedPath = p.path.split('\\\\');
+        const pRealName = splittedPath[splittedPath.length - 1];
+
+
+        // Executes the taskkill command
+        const taskkill = spawn('taskkill', ['/im ' + pRealName], {
+          shell: true
+        });
+
+        taskkill.on('close', (code) => {
+        });
+
+      }
+    }
+  }
+
+  // Adds running Time to the programs
+  addRunTime(deltaTime: number){
+
+    for (let p of this.programs){
+
+      if (p.running && p.tracking && !p.blocked){
+        p.runTime += deltaTime / 1000;
+      }
+    }
   }
 
   // This function opens a Dialog Window from which the user can select new Programs to track

@@ -12,11 +12,11 @@
 <div class="row buttons">
   <div class="col buttonContainer">
     <p>Track all Programs</p>
-    <app-toggle [(toggle)]="toggleTrackAll"  [ngModel]="toggleTrackAll" (ngModelChange)="toggleTrackAll=!toggleTrackAll"></app-toggle>
+    <app-toggle [(toggle)]="programService.trackAll"  [ngModel]="programService.trackAll" (ngModelChange)="programService.toggleTrackAll(programService.trackAll)"></app-toggle>
   </div>
   <div class="col buttonContainer">
       <p>Block all Programs</p>
-      <app-toggle [toggle]="toggleBlockAll" [ngModel]="toggleBlockAll" (ngModelChange)="toggleBlockAll=!toggleBlockAll"></app-toggle>
+      <app-toggle [toggle]="programService.blockAll" [ngModel]="programService.blockAll" (ngModelChange)="programService.toggleBlockAll(programService.blockAll)"></app-toggle>
   </div>
   <div class="col buttonContainer">
       <p>add Program</p>
@@ -32,6 +32,9 @@
 </div>
 <div class="row">
   <div class="col">
+    <div *ngFor="let p of programService.programs">
+      {{ p | json}}
+    </div>
     <app-list [listElements]="programService.programs"></app-list>
     </div>
 </div>

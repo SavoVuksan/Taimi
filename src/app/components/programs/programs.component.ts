@@ -11,12 +11,10 @@ import {ProgramService} from '../../services/program.service';
 export class ProgramsComponent implements OnInit {
 
 
-  toggleBlockAll: boolean;
-  toggleTrackAll: boolean;
+
 
   constructor(public programService: ProgramService ) {
-    this.toggleBlockAll = false;
-    this.toggleTrackAll = false;
+
 
   }
 
