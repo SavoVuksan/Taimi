@@ -40,6 +40,7 @@ import { HomescreenComponent } from './components/homescreen/homescreen.componen
 import { ProgramsComponent } from './components/programs/programs.component';
 import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
+import { BreakComponent } from './components/break/break.component';
 
 
 // AoT requires an exported function for factories
@@ -67,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomescreenComponent,
     ProgramsComponent,
     ListComponent,
-    PointToggleComponent
+    PointToggleComponent,
+    BreakComponent
   ],
   imports: [
     BrowserModule,

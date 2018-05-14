@@ -1,0 +1,26 @@
+<div class="roundedCont" *ngIf="show">
+  <div class="bar">
+    <div class="cup">
+        <img src="../../../assets/icons/png/PauseIconSmall.png">
+    </div>
+    <h2>Pause</h2>
+    <div class="close" (click)="close()">
+      <img src="../../../assets/icons/png/closeIcon.png" alt="">
+    </div>
+  </div>
+  <div class="options-left" (click)="takeABreak(15)">15</div>
+  <div class="options" (click)="takeABreak(30)">30</div>
+  <div class="options-right" (click)="takeABreak(60)">60</div>
+</div>
+<div class="break" (click)="openOptions()" *ngIf="base" (mouseover)="iconColor=false" (mouseleave)="iconColor=true">
+  <img src="../../../assets/icons/png/PauseIconGrey.png" *ngIf="iconColor">
+  <img src="../../../assets/icons/png/PauseIconBig.png" *ngIf="!iconColor">
+</div>
+<div class="breakTaken" *ngIf="breakTaken" (click)="takeABreak(15)">
+  <img src="../../../assets/icons/png/PauseIconBig.png">
+  <div class="outerBar">
+    <div class="innerBar" [style.width]="getProgress()">
+  
+    </div>
+  </div>  
+</div>
