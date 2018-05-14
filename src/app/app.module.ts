@@ -9,7 +9,6 @@ import { HttpModule } from '@angular/http';
 
 import {SharedVariablesService} from './services/shared-variables.service';
 import {MeasureRunTimeService } from './services/measure-run-time.service';
-import {TrackProgramsService} from './services/track-programs.service';
 import { DatabaseService } from './services/database.service';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -23,7 +22,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ElectronService } from './providers/electron.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ToggleComponent } from './components/ui/toggle/toggle.component';
 import { SliderComponent } from './components/ui/slider/slider.component';
@@ -40,7 +38,11 @@ import { HomescreenComponent } from './components/homescreen/homescreen.componen
 import { ProgramsComponent } from './components/programs/programs.component';
 import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
+<<<<<<< HEAD
 import { BreakComponent } from './components/break/break.component';
+=======
+import { ProgramService } from './services/program.service';
+>>>>>>> 2a7ada7ef1285b132d9eaad8af5cf4df0aca339f
 
 
 // AoT requires an exported function for factories
@@ -53,7 +55,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SettingsComponent,
     ToggleComponent,
     SliderComponent,
@@ -87,8 +88,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpModule
   ],
   providers: [    ElectronService, SharedVariablesService,
-     MeasureRunTimeService, TrackProgramsService, NotificationService,
-     DatabaseService
+     MeasureRunTimeService, NotificationService,
+     DatabaseService,
+     ProgramService
 
     ],
   bootstrap: [AppComponent]
