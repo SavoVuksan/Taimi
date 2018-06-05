@@ -5,7 +5,7 @@ import {DatabaseService} from './database.service';
 const {dialog} = require('electron').remote;
 
 
-// Service that handles the whole program tracking / blocking functionality
+// Service that handles the whole bindedObject tracking / blocking functionality
 @Injectable()
 export class ProgramService {
 
@@ -49,7 +49,7 @@ export class ProgramService {
     this.blockAll = !block;
   }
 
-  // Executes the Command to check which program is currently running
+  // Executes the Command to check which bindedObject is currently running
   executeTasklist(){
 
     const tasklist = spawn('tasklist', ['/fo csv'], {
@@ -153,7 +153,7 @@ export class ProgramService {
         let programAlreayInList = false;
         programName = programName[programName.length - 1].split('.');
 
-        // Creates the program object with its values some are preseted
+        // Creates the bindedObject object with its values some are preseted
         program = {
           'name': this.capitalizeFirstLetter(programName[0]),
           'path': this.addBackslashes(programPath),

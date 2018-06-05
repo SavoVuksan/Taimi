@@ -24,7 +24,7 @@ export class PointToggleComponent implements OnInit {
 @Input()
   toggle: boolean;
   @Input()
-  program: Program;
+  bindedObject: any;
 
 
 @Output()
@@ -49,7 +49,7 @@ export class PointToggleComponent implements OnInit {
     this.toggle = !this.toggle;
     this.state = (this.toggle ? this.state = 'on' : this.state = 'off');
     this.toggleChange.emit(this.toggle);
-   // this.database.updateProgram(this.program);
+   // this.database.updateProgram(this.bindedObject);
   }
 
 }

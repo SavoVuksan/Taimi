@@ -6,14 +6,18 @@ import {Website} from '../classes/website';
 export class WebsiteService {
 
   websites: Website[];
-  websiteId: number;
+
 
   constructor(private database: DatabaseService) {
     this.websites = new Array<Website>();
-    this.websiteId = 1;
-    this.getMaxWebID(this.websiteId);
+    this.loadWebsites();
+
   }
 
+  addWebsite(website: Website){
+    this.websites.push(website);
+    this.database.addWebsite(website);
+  }
 
   updateWebsite(website: Website){
     this.database.updateWebsite(website);
@@ -23,7 +27,8 @@ export class WebsiteService {
     const index = this.websites.indexOf(website,0);
     this.websites.splice(index,1);
   }
-  getMaxWebID(webID: number){
-    this.database.getMaxWebID(webID);
+  loadWebsites(){
+    this.database.loadWebsites(this.websites);
   }
+
 }

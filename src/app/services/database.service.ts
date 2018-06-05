@@ -85,21 +85,38 @@ export class DatabaseService {
   }
 
   updateWebsite(website: Website){
-    //todo Update Website sql NEEDS TO BE IMPLEMENTED
+    let query = `update blockedwebsite set domainname = '${website.name}' ,
+     active = ${(website.blocked === true ? 1 : 0)} where domainname = '${website.name}'`;
+    connection.query(query, (err, rows, fields) => {
+
+    });
+
   }
   deleteWebsite(website: Website){
-    //todo delete website sql NEEDS TO BE IMPLEMENTED
+      let query = `delete from blockedwebsite where domainname = '${website.name}' `;
+
+    connection.query(query, (err, fields) => {
+
+    });
   }
-  getMaxWebID(webID:number){
-    let query = `select max(websiteid)"MAX" from blockedwebsite group by websiteid`;
+
+  addWebsite(website: Website){
+    let query = `insert into blockedwebsite (domainname, active) values ('${website.name}',${(website.blocked === true ? 1 : 0)})`;
+
+    connection.query(query, (err, rows, fields) =>{
+
+    });
+  }
+
+  loadWebsites(websites: Website[]){
+    let query = `select domainname , active from blockedwebsite`;
 
     connection.query(query, (err, rows, fields) => {
-      console.log(rows);
-      if(rows.length === 0){
-        webID = 1;
-      }else{
-        console.log(rows[0]);
-        webID = rows[0].MAX +1;
+      if(rows.length > 0 ){
+        for(let w of rows){
+          let website = new Website(w.domainname,(w.active === 1 ? true : false));
+          websites.push(website);
+        }
       }
     });
   }

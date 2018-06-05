@@ -32,10 +32,12 @@ export class ListComponent implements OnInit {
 
 
   }
+  // Updates the Program on the DB
   programChanged(program: Program){
-    console.log(program);
     (this.service as ProgramService).updateProgram(program);
   }
+
+  // Updates the Website on the DB
   websiteChanged(website: Website){
     (this.service as WebsiteService).updateWebsite(website);
   }
@@ -48,7 +50,6 @@ export class ListComponent implements OnInit {
   }
 
   isProgram(element: any): element is Program[]{
-    console.log(('Program' in element) !== undefined);
     return ('Program' in element) !== undefined;
   }
   isWebsite(element: any){

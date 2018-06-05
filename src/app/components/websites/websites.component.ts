@@ -13,16 +13,22 @@ export class WebsitesComponent implements OnInit {
 
   constructor(public websiteService: WebsiteService) {
 
-    this.websiteService.websites.push(new Website( 'www.youtube.com', true));
-    this.websiteService.websites.push(new Website('www.twitter.com', false));
-    this.websiteService.websites.push(new Website( 'www.facebook.com', true));
   }
 
   addToList(){
-    let website = new Website(this.addWebsite, false);
-    console.log(website);
-    this.websiteService.websites.push(website);
-    this.websiteService.websiteId++;
+
+    const website = new Website(this.addWebsite, false);
+    let websiteInList = false;
+    for (const w of this.websiteService.websites){
+      if (website.name === w.name){
+        websiteInList = true;
+      }
+    }
+    if (!websiteInList) {
+      this.websiteService.addWebsite(website);
+    }
+
+    this.addWebsite = '';
   }
 
   ngOnInit() {

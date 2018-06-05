@@ -21,12 +21,12 @@
       </div>
       <div class="col centerContent">
         <div>
-          <app-point-toggle [(toggle)]="item.tracking" (toggleChange)=" programChanged(item)"[program]="item"></app-point-toggle>
+          <app-point-toggle [(toggle)]="item.tracking" (toggleChange)=" programChanged(item)" [bindedObject]="item"></app-point-toggle>
         </div>
       </div>
       <div class="col centerContent">
         <div>
-          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="programChanged(item)" [program]="item"></app-point-toggle>
+          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="programChanged(item)" [bindedObject]="item"></app-point-toggle>
         </div>
 
         <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
@@ -47,7 +47,7 @@
 
       <div class="col centerContent">
         <div>
-          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="websiteChanged(item)" [program]="item"></app-point-toggle>
+          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="websiteChanged(item)" [bindedObject]="item"></app-point-toggle>
         </div>
 
         <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
