@@ -1,6 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
-import { TranslateService } from '@ngx-translate/core';
 import { SharedVariablesService} from './services/shared-variables.service';
 import { NotificationService} from './services/notification.service';
 import { DatabaseService } from './services/database.service';
@@ -22,11 +21,9 @@ export class AppComponent{
   private subscription:any;
 
   constructor(public electronService: ElectronService,
-    private translate: TranslateService,
     private sharedVariables : SharedVariablesService,
     private notificationService:NotificationService,
     private database: DatabaseService) {
-    translate.setDefaultLang('en');
     //this.notificationService.showSmallNotification("Notification",
     //"All kitties are saved now, well not all but all kitties in your local area. Next step ist to save the puppies.");
     //this.sharedVariables.loadtimeSettings();
