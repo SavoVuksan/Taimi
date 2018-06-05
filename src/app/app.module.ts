@@ -38,6 +38,7 @@ import { HomescreenComponent } from './components/homescreen/homescreen.componen
 import { ProgramsComponent } from './components/programs/programs.component';
 import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
+import { BreakComponent } from './components/break/break.component';
 import { ProgramService } from './services/program.service';
 import { WebsitesComponent } from './components/websites/websites.component';
 import {WebsiteService} from './services/website.service';
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PointToggleComponent,
     WebsitesComponent,
     TextFieldComponent,
+    BreakComponent
   ],
   imports: [
     BrowserModule,

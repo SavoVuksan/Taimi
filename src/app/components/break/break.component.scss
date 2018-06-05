@@ -1,0 +1,142 @@
+.roundedCont{
+    position: relative;
+    width: 20%;
+    display:inline-block;
+    height: 150px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.29);
+    user-select: none;
+    cursor:default;
+  }
+
+.break{
+  position: relative;
+    width: 20%;
+    display:inline-block;
+    height: 150px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.29);
+    user-select: none;
+    cursor:default;
+    text-align: center;
+}
+.break >img{
+  padding-top: 30%;
+  height: 70%;
+}
+
+.breakTaken{
+  position: relative;
+    width: 20%;
+    display:inline-block;
+    height: 150px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.29);
+    user-select: none;
+    cursor:default;
+    text-align: center;
+}
+.breakTaken >img{
+  padding-top: 30%;
+  height: 65%;
+}
+
+  h2{
+    position: absolute;
+    font-family: oswaldLight;
+    font-size: 17.14pt;
+    left: 50%;
+    top: 5px;
+    transform: translate(-50%,0%);
+  }
+.bar{
+   background-color: #28CBC2;
+   color:rgb(255, 255, 255);
+   height: 25%;
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
+}
+.cup{
+  position: absolute;
+  height: 22px;
+  left: 10px;
+  top: 5px;
+}
+.cup >img{
+  height: 100%;
+}
+.close{
+  position: absolute;
+  height: 13px;
+  right: 10px;
+  top: 2px;
+}
+.close >img{
+  height: 100%;
+}
+
+.options{
+    position: absolute;
+    padding-top: 25%;
+    width: 33%;
+    height: 75%;
+    margin-left: 33%;
+    font-family: oswaldLight;
+    font-size: 17.14pt;
+    text-align: center;
+}
+.options:hover{
+  background-color: rgb(192, 192, 192);
+}
+.options-left{
+    position: absolute;
+    border-bottom-left-radius: 15px;
+    padding-top: 25%;
+    width: 33%;
+    height: 75%;
+    font-family: oswaldLight;
+    font-size: 17.14pt;
+    text-align: center;
+}
+.options-left:hover{
+  background-color: rgb(192, 192, 192);
+}
+.options-right{
+    border-bottom-right-radius: 15px;
+    position: absolute;
+    padding-top: 25%;
+    margin-left: 67%;
+    width: 33%;
+    height: 75%;
+    font-family: oswaldLight;
+    font-size: 17.14pt;
+    text-align: center;
+}
+.options-right:hover{
+  background-color: rgb(192, 192, 192);
+}
+
+.outerBar{
+  position: absolute;
+  width: 94%;
+  height: 10px;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%,0%);
+  background-color: #EAEAEA;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.innerBar{
+  position: absolute;
+  height: 100%;
+
+  border-radius: 15px;
+  background-color: #28CBC2;
+}
