@@ -32,7 +32,7 @@ export class PointToggleComponent implements OnInit {
 
   state: string;
 
-  constructor(private database: DatabaseService ) {
+  constructor( ) {
     if (this.toggle === undefined){
       this.toggle = false;
       this.state = (this.toggle ? this.state = 'on' : this.state = 'off');
@@ -49,7 +49,7 @@ export class PointToggleComponent implements OnInit {
     this.toggle = !this.toggle;
     this.state = (this.toggle ? this.state = 'on' : this.state = 'off');
     this.toggleChange.emit(this.toggle);
-    this.database.updateProgram(this.program);
+   // this.database.updateProgram(this.program);
   }
 
 }

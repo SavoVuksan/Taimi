@@ -39,6 +39,9 @@ import { ProgramsComponent } from './components/programs/programs.component';
 import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
 import { ProgramService } from './services/program.service';
+import { WebsitesComponent } from './components/websites/websites.component';
+import {WebsiteService} from './services/website.service';
+import { TextFieldComponent } from './components/text-field/text-field.component';
 
 
 // AoT requires an exported function for factories
@@ -65,7 +68,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomescreenComponent,
     ProgramsComponent,
     ListComponent,
-    PointToggleComponent
+    PointToggleComponent,
+    WebsitesComponent,
+    TextFieldComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [    ElectronService, SharedVariablesService,
      MeasureRunTimeService, NotificationService,
      DatabaseService,
-     ProgramService
+     ProgramService,
+    WebsiteService
 
     ],
   bootstrap: [AppComponent]

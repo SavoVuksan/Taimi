@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as child_process from 'child_process';
 import {spawn} from 'child_process';
 import {Program} from '../interfaces/program';
 import {DatabaseService} from './database.service';
@@ -21,14 +20,18 @@ export class ProgramService {
     this.tasklistOutput = '';
     this.programs = new Array<Program>();
 
+    this.database.loadPrograms(this.programs);
 
     // Start the check loop for Program running
     setInterval(() => {
         this.executeTasklist();
-        this.addRunTime(5000);
+        this.addRunTime(500);
         this.blockPrograms();
-    }, 5000);
+
+    }, 500);
   }
+
+
 
   // Changes every element to tracking/not tracking
   toggleTrackAll(track: boolean){
@@ -88,6 +91,10 @@ export class ProgramService {
 
   }
 
+  updateProgram(program: Program){
+    this.database.updateProgram(program);
+  }
+
   // Blocks programs via a command
   blockPrograms(){
     for (let p of this.programs){
@@ -116,35 +123,49 @@ export class ProgramService {
 
       if (p.running && p.tracking && !p.blocked){
         p.runTime += deltaTime / 1000;
+        this.database.addRunningProgram(p);
       }
     }
   }
 
+  // Deletes the Program from the list and the DB
+  deleteProgram(program: Program){
+    this.database.deleteProgram(program);
+    const index = this.programs.indexOf(program, 0);
+    this.programs.splice(index, 1);
+  }
+
   // This function opens a Dialog Window from which the user can select new Programs to track
   addProgram() {
-    dialog.showOpenDialog({properties: ['openFile'], filters: [{name: 'Programs', extensions: ['exe']}]}, filePaths => {
+    dialog.showOpenDialog(
+      {properties: ['openFile', 'showHiddenFiles', 'multiSelections'],
+        filters: [{name: 'Programs', extensions: ['exe']},{name: 'All', extensions: ['*']}]}, filePaths => {
 
       // Only do something if the user selects a File
       if (filePaths !== undefined) {
+
+        // Iterates through every selected element of the Dialog
+        for (let p of filePaths) {
+
         let program: Program;
-        const programPath = filePaths[0];
+        const programPath = p;
         let programName = programPath.split('\\');
         let programAlreayInList = false;
         programName = programName[programName.length - 1].split('.');
 
         // Creates the program object with its values some are preseted
         program = {
-          'name' : this.capitalizeFirstLetter(programName[0]),
+          'name': this.capitalizeFirstLetter(programName[0]),
           'path': this.addBackslashes(programPath),
           'running': false,
-          'runTime' : 0,
-          'day' :  new Date(),
-          blocked : false,
-          tracking : false
+          'runTime': 0,
+          'day': new Date(),
+          blocked: false,
+          tracking: false
         }
 
         // Check if selected Program is already in list
-        for (const p of this.programs){
+        for (const p of this.programs) {
           if (p.path === program.path) {
             programAlreayInList = true;
           }
@@ -156,7 +177,7 @@ export class ProgramService {
           this.database.persistProgram(program);
           this.executeTasklist();
         }
-
+      }
       }
     });
   }

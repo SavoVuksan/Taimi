@@ -1,0 +1,39 @@
+<div class="container-fluid websitesContainer">
+
+  <div class="row header">
+    <div class="verticalCentered">
+      <app-burger-menu></app-burger-menu>
+
+    </div>
+    <h1>
+      Lock Websites
+    </h1>
+  </div>
+  <div class="row inputContainer">
+    <div class="col-4">
+      <p>Block all Websites</p>
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <div class="col">
+        <p>Add Website</p>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="col noPadding">
+        <input type="text" placeholder="URL" name="addWebsite" [(ngModel)]="addWebsite">
+
+        <button (click)="addToList()">Add</button>
+        {{this.websiteService.websiteId}}
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+    <app-list [listElements]="this.websiteService.websites" [propeties]="['Name','Blocking']" [service]="this.websiteService">
+
+    </app-list>
+    </div>
+  </div>
+</div>
