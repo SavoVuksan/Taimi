@@ -1,8 +1,8 @@
 .roundedCont{
     position: relative;
-    width: 20%;
+    width: 45%;
     display:inline-block;
-    height: 150px;
+    height: 125px;
     border-radius: 15px;
     margin-top: 20px;
     margin-left: 20px;
@@ -13,9 +13,9 @@
 
 .break{
   position: relative;
-    width: 20%;
+    width: 45%;
     display:inline-block;
-    height: 150px;
+    height: 125px;
     border-radius: 15px;
     margin-top: 20px;
     margin-left: 20px;
@@ -25,15 +25,15 @@
     text-align: center;
 }
 .break >img{
-  padding-top: 30%;
+  padding-top: 10%;
   height: 70%;
 }
 
 .breakTaken{
   position: relative;
-    width: 20%;
+    width: 45%;
     display:inline-block;
-    height: 150px;
+    height: 125px;
     border-radius: 15px;
     margin-top: 20px;
     margin-left: 20px;
@@ -43,15 +43,15 @@
     text-align: center;
 }
 .breakTaken >img{
-  padding-top: 30%;
-  height: 65%;
+  padding-top: 15%;
+  height: 70%;
 }
 
   h2{
     position: absolute;
     font-family: oswaldLight;
     font-size: 17.14pt;
-    left: 50%;
+    left: 24%;
     top: 5px;
     transform: translate(-50%,0%);
   }
@@ -64,9 +64,9 @@
 }
 .cup{
   position: absolute;
-  height: 22px;
-  left: 10px;
-  top: 5px;
+  height: 20px;
+  left: 12px;
+  top: 3px;
 }
 .cup >img{
   height: 100%;
@@ -83,7 +83,7 @@
 
 .options{
     position: absolute;
-    padding-top: 25%;
+    padding-top: 8%;
     width: 33%;
     height: 75%;
     margin-left: 33%;
@@ -97,7 +97,7 @@
 .options-left{
     position: absolute;
     border-bottom-left-radius: 15px;
-    padding-top: 25%;
+    padding-top: 8%;
     width: 33%;
     height: 75%;
     font-family: oswaldLight;
@@ -110,7 +110,7 @@
 .options-right{
     border-bottom-right-radius: 15px;
     position: absolute;
-    padding-top: 25%;
+    padding-top: 8%;
     margin-left: 67%;
     width: 33%;
     height: 75%;

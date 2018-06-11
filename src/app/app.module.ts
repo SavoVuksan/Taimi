@@ -38,11 +38,10 @@ import { HomescreenComponent } from './components/homescreen/homescreen.componen
 import { ProgramsComponent } from './components/programs/programs.component';
 import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
-<<<<<<< HEAD
 import { BreakComponent } from './components/break/break.component';
-=======
 import { ProgramService } from './services/program.service';
->>>>>>> 2a7ada7ef1285b132d9eaad8af5cf4df0aca339f
+import { MemoryComponent } from './components/memory/memory.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 
 // AoT requires an exported function for factories
@@ -70,7 +69,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgramsComponent,
     ListComponent,
     PointToggleComponent,
-    BreakComponent
+    BreakComponent,
+    MemoryComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    HttpModule
+    HttpModule,
+    AmazingTimePickerModule
   ],
   providers: [    ElectronService, SharedVariablesService,
      MeasureRunTimeService, NotificationService,
