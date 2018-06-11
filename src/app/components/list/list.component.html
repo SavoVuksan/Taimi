@@ -1,44 +1,60 @@
-<div class="listContainer">
-<div class="row bottomBorder">
-  <div class="col">
-    <p>
-    Name
-    </p>
-  </div>
-  <div class="col ">
-    <p class="leftBorder">
-    Tracking
-    </p>
-  </div>
-  <div class="col">
-    <p class="leftBorder">
-    Blocking
-    </p>
-  </div>
+<div class="listContainer ">
+  <div class="row bottomBorder">
 
-</div>
-
-<div class="row" *ngFor="let item of listElements">
-
-  <div class="col">
-    <p>
-    {{item.name}}
-    </p>
-  </div>
-  <div class="col centerContent">
-    <div>
-    <app-point-toggle [(toggle)]="item.tracking" [program]="item"  ></app-point-toggle>
+    <div class="col" *ngFor="let prop of propeties;let i = index">
+      <p *ngIf="i === 0">
+        {{prop}}
+      </p>
+      <p class="leftBorder" *ngIf="i > 0">
+        {{prop}}
+      </p>
     </div>
+
   </div>
-  <div class="col centerContent">
-      <div>
-      <app-point-toggle [(toggle)]="item.blocked" [program]="item"></app-point-toggle>
+  <div *ngIf="!isWebsite(listElements)" class="contentContainer">
+    <div  class="row" *ngFor="let item of listElements" >
+
+      <div class="col">
+        <p>
+          {{item.name}}
+        </p>
       </div>
+      <div class="col centerContent">
+        <div>
+          <app-point-toggle [(toggle)]="item.tracking" (toggleChange)=" programChanged(item)" [bindedObject]="item"></app-point-toggle>
+        </div>
+      </div>
+      <div class="col centerContent">
+        <div>
+          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="programChanged(item)" [bindedObject]="item"></app-point-toggle>
+        </div>
 
         <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
 
+      </div>
+
+
     </div>
+  </div>
+  <div *ngIf="isWebsite(listElements)" class="contentContainer">
+    <div  class="row" *ngFor="let item of listElements" >
+
+      <div class="col">
+        <p>
+          {{item.name}}
+        </p>
+      </div>
+
+      <div class="col centerContent">
+        <div>
+          <app-point-toggle [(toggle)]="item.blocked" (toggleChange)="websiteChanged(item)" [bindedObject]="item"></app-point-toggle>
+        </div>
+
+        <img (click)="deleteListElement(item)" src="../../../assets/icons/XIcon.png" alt="">
+
+      </div>
 
 
-</div>
+    </div>
+  </div>
 </div>

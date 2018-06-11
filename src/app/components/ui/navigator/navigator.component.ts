@@ -59,7 +59,6 @@ export class NavigatorComponent implements ControlValueAccessor {
     if(event.key == "Tab")
     {
       this.sharedVariables.setNavigatorVisible(!this.sharedVariables.getNavigatorVisible());
-      console.log("tabbed");
       if(!this.navigatorVisible)
       {
         this.showNavigator();

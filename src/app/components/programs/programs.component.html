@@ -19,7 +19,7 @@
       <app-toggle [toggle]="programService.blockAll" [ngModel]="programService.blockAll" (ngModelChange)="programService.toggleBlockAll(programService.blockAll)"></app-toggle>
   </div>
   <div class="col buttonContainer">
-      <p>add Program</p>
+      <p>Add Program</p>
       <div class="btn" (click)="programService.addProgram()">
         <p>
         ADD
@@ -27,15 +27,11 @@
       </div>
   </div>
   <div class="col-2">
-
   </div>
 </div>
 <div class="row">
   <div class="col">
-    <div *ngFor="let p of programService.programs">
-      {{ p | json}}
-    </div>
-    <app-list [listElements]="programService.programs"></app-list>
+    <app-list [listElements]="programService.programs" [service]="this.programService" [propeties]="['Name','Tracking','Blocked']" ></app-list>
     </div>
 </div>
 <!--<div class="listContainer">

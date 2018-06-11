@@ -3,6 +3,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProgramsComponent } from './components/programs/programs.component';
+import {WebsitesComponent} from './components/websites/websites.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,11 @@ const routes: Routes = [
     {
         path: 'programs',
         component: ProgramsComponent
-    }
+    },
+  {
+    path: 'websites',
+    component: WebsitesComponent
+  }
 ];
 
 @NgModule({

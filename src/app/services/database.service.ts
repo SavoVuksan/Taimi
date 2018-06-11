@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SharedVariablesService } from './shared-variables.service';
 import { Observable } from 'rxjs/Rx';
 import {Program} from '../interfaces/program';
+import {Website} from '../classes/website';
 
 const mysql = require('mysql');
 let connection;
@@ -70,6 +71,129 @@ export class DatabaseService {
     });
   }
 
+  deleteProgram(program: Program){
+    let query = `select programid from program where path = '${program.path}'`;
+    let programid;
+    connection.query(query, (err, rows, fields) => {
+      programid = rows[0].programid;
+      query = `delete from program where path = '${program.path}'`;
+      connection.query(query, (err, fields) => {
+
+      });
+    });
+
+  }
+
+  updateWebsite(website: Website){
+    let query = `update blockedwebsite set domainname = '${website.name}' ,
+     active = ${(website.blocked === true ? 1 : 0)} where domainname = '${website.name}'`;
+    connection.query(query, (err, rows, fields) => {
+
+    });
+
+  }
+  deleteWebsite(website: Website){
+      let query = `delete from blockedwebsite where domainname = '${website.name}' `;
+
+    connection.query(query, (err, fields) => {
+
+    });
+  }
+
+  addWebsite(website: Website){
+    let query = `insert into blockedwebsite (domainname, active) values ('${website.name}',${(website.blocked === true ? 1 : 0)})`;
+
+    connection.query(query, (err, rows, fields) =>{
+
+    });
+  }
+
+  loadWebsites(websites: Website[]){
+    let query = `select domainname , active from blockedwebsite`;
+
+    connection.query(query, (err, rows, fields) => {
+      if(rows.length > 0 ){
+        for(let w of rows){
+          let website = new Website(w.domainname,(w.active === 1 ? true : false));
+          websites.push(website);
+        }
+      }
+    });
+  }
+
+  addRunningProgram(program: Program){
+    let dayid, programid, runningid;
+    let today = new Date();
+    let startTime;
+    let query = `select dayid from day where date = '${today.toISOString().split('T')[0]}'`;
+
+    // Get the ID of the Day
+    connection.query(query, (err, rows, fields) => {
+      dayid = rows[0].dayid;
+      query = `select programid from program where path = '${program.path}'`;
+
+      // Get the ID of the Program
+      connection.query(query, (err, rows, fields) => {
+        programid = rows[0].programid;
+
+        // The starttime is calculated in Seconds from day start
+        startTime = program.day.getMilliseconds() / 1000
+          + program.day.getSeconds()
+          + program.day.getMinutes() * 60
+          + program.day.getHours() * 60 * 60;
+
+        // Conditional insert or update
+        query = `select runningid from running where dayid = ${dayid} and programid = ${programid}`;
+
+        connection.query(query, (err, rows, fields) => {
+          if(rows.length === 0){
+            // Running record doesnt exist so we make an insert
+            query = `insert into  running (dayid,programid,runtime,starttime) values (${dayid},${programid},${program.runTime},${startTime})`;
+
+            connection.query(query, (err, rows, fields) => {});
+          }else{
+            runningid = rows[0].runningid;
+            // Running record exists so we need to update it
+            query = `update running set runtime = ${program.runTime} , starttime = ${startTime} where runningid = ${runningid}`;
+
+            connection.query(query, (err, rows, fields) => {});
+
+          }
+        });
+
+      });
+    });
+  }
+
+
+
+  loadPrograms(programs: Program[]){
+    const query = `select * from program`;
+    connection.query(query,(err, rows, fields) => {
+
+      if(rows.length > 0){
+        for(let p of rows){
+        let name = p.name;
+        let path = this.addBackslashes(p.path);
+        let blocked = (p.blocked === 0 ? false : true);
+        let tracking = (p.tracking === 0 ? false : true);
+        let program = {
+          'name': name,
+          'path': path,
+          'blocked': blocked,
+          'tracking': tracking,
+          'running': false,
+          'runTime': 0,
+          'day': new Date()
+        };
+        programs.push(program);
+
+        }
+      }
+      return programs;
+    });
+  }
+
   loadToday(){
     const query  = 'select * from day where date = \'' + this.sharedVariables.getToday().toISOString().split('T')[0] + '\'';
     connection.query(query, (err, rows, fields) => {
@@ -100,7 +224,6 @@ export class DatabaseService {
       + this.sharedVariables.getTodayTimeMax() + ','
       + this.sharedVariables.getTodayTimeLeft() + ',\''
       + this.sharedVariables.getToday().toISOString().split('T')[0] + '\')';
-      console.log(query);
       connection.query(query, (err, rows, fields) => {
 
       });
@@ -112,7 +235,6 @@ export class DatabaseService {
     const query = 'update settings set hoursperday = ' +
     this.sharedVariables.getTodayTimeMax() + ', notificationsOn = ' +
     (this.sharedVariables.getNotificationOn() === true ? 1 : 0) + ' where settingsID = 0';
-    console.log(query);
     connection.query(query, (err, rows, fields) => {
 
     });
@@ -128,6 +250,12 @@ export class DatabaseService {
       this.sharedVariables.setTodayTimeLeft(this.sharedVariables.getTodayTimeMax());
 
     });
+  }
+
+  // Adds to every backslash an extra one as escape Character
+  addBackslashes(s: string){
+    const reqExpr = /\\/g;
+    return s.replace(reqExpr, '\\\\');
   }
 
 }
