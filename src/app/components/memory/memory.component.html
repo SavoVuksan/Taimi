@@ -1,0 +1,19 @@
+<div class="memory" (click)="openMenu()" *ngIf="base" (mouseover)="iconColor=false" (mouseleave)="iconColor=true">
+  <img src="../../../assets/icons/png/TimeGrey.png" *ngIf="iconColor">
+  <img src="../../../assets/icons/png/TimeGreen.png" *ngIf="!iconColor">
+  <div *ngIf="setMemory" class="memorySet">You already have something to remember</div>
+</div>
+<div class="roundedCont" *ngIf="show">
+  <div class="bar">
+    <div class="clock">
+        <img src="../../../assets/icons/png/PauseIconSmall.png">
+    </div>
+    <h2>Reminder</h2>
+    <div class="close" (click)="close()">
+      <img src="../../../assets/icons/png/closeIcon.png" alt="">
+    </div>
+  </div>
+  <input class="text" type="text" size="43" [(ngModel)]="remindertext" [style.color]="textColor" (click)="emptyText()">
+  <input class="time" type="time" [(ngModel)]="selectedTime" [style.color]="timeColor" (click)="emptyTime()">
+  <button (click)="addMemory()" [style.background-color]="buttonColor" [disabled]="add">Add</button>
+</div>

@@ -1,0 +1,116 @@
+h2{
+  position: absolute;
+  font-family: oswaldLight;
+  font-size: 17.14pt;
+  left: 25%;
+  top: 6px;
+  transform: translate(-50%,0%);
+}
+
+button{
+  border-style: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: #28CBC2;
+  color: white;
+  margin: 2px 1px 0px 0px;
+  width: 71.5px;
+  height: 32.5px;
+  font-family: oswaldLight;
+  font-size: 13.4pt;
+}
+
+.text{
+  margin-top: 15px;
+  margin-left: 10px;
+  padding: 1px;
+  font-family: oswaldLight;
+  font-size: 13.4pt;
+  border-color: rgb(192, 192, 192);
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(192, 192, 192);
+  border-radius: 3px;
+}
+
+.time{
+  margin-top: 5px;
+  margin-left: 10px;
+  padding: 1px;
+  font-family: oswaldLight;
+  font-size: 13.4pt;
+  border-color: rgb(192, 192, 192);
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(192, 192, 192);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 72.5%;
+}
+
+.changed{
+  color: black;
+}
+
+.memory{
+    position: absolute;
+    width: 43%;
+    display:inline-block;
+    height: 125px;
+    border-radius: 10px;
+    margin-top: 160px;
+    margin-left: -43%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.29);
+    user-select: none;
+    cursor:default;
+  }
+
+.memory >img{
+    margin-left: 40%;
+    margin-top: 5%;
+    height: 60%;
+  }
+
+.roundedCont{
+  position: absolute;
+  width: 43%;
+  display:inline-block;
+  height: 125px;
+  border-radius: 10px;
+  margin-top: 160px;
+  margin-left: -43%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.29);
+  user-select: none;
+  cursor:default;
+  }
+.bar{
+   background-color: #28CBC2;
+   color:rgb(255, 255, 255);
+   height: 30%;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+}
+.clock{
+  position: absolute;
+  height: 23px;
+  left: 10px;
+  top: 5px;
+}
+.clock >img{
+  height: 100%;
+}
+.close{
+  position: absolute;
+  height: 12px;
+  right: 10px;
+}
+.close >img{
+  height: 100%;
+}
+
+.memorySet{
+  margin-top: 1%;
+  text-align: center;
+  font-family: oswaldLight;
+  font-size: 13.4pt;
+}

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {SharedVariablesService} from './services/shared-variables.service';
 import {MeasureRunTimeService } from './services/measure-run-time.service';
 import { DatabaseService } from './services/database.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { AppComponent } from './app.component';
@@ -29,8 +29,11 @@ import { ListComponent } from './components/list/list.component';
 import { PointToggleComponent } from './components/point-toggle/point-toggle.component';
 import { BreakComponent } from './components/break/break.component';
 import { ProgramService } from './services/program.service';
+import { MemoryComponent } from './components/memory/memory.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { WebsitesComponent } from './components/websites/websites.component';
 import {WebsiteService} from './services/website.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -50,6 +53,8 @@ import {WebsiteService} from './services/website.service';
     ProgramsComponent,
     ListComponent,
     PointToggleComponent,
+    BreakComponent,
+    MemoryComponent,
     WebsitesComponent,
     BreakComponent
   ],
@@ -58,6 +63,9 @@ import {WebsiteService} from './services/website.service';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpModule,
+    AmazingTimePickerModule,
     BrowserAnimationsModule
   ],
   providers: [    ElectronService, SharedVariablesService,
