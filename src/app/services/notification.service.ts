@@ -65,6 +65,10 @@ if(!this.showLittleNotification){
       win.webContents.send("notificationData",notificationHeader,notificationMessage);
     });
     this.showLittleNotification = true;
+
+    setTimeout(() => {
+      this.showLittleNotification = false;
+    }, 9000);
   }
 }
 

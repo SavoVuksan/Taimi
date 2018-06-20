@@ -60,6 +60,8 @@ export class WebsiteService {
     this.database.deleteWebsite(website);
     const index = this.websites.indexOf(website,0);
     this.websites.splice(index,1);
+    this.updateHostFile();
+
   }
   loadWebsites(){
     this.database.loadWebsites(this.websites);

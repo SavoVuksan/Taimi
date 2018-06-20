@@ -13,7 +13,7 @@ export class SharedVariablesService {
   private weekTimeMax:number;
   private weekTimeLeft:number;
   private notificationOn:boolean;
-  
+
 
   //PROGRAM VARS
   private today:Date;
@@ -51,6 +51,7 @@ export class SharedVariablesService {
           observer.next("TodayMax: " + this.todayTimeMax+" TodayLeft: "+ this.todayTimeLeft+" WeekMax: " + this.weekTimeMax+" WeekLeft: " +
           this.weekTimeLeft + " NotificationOn: " + this.notificationOn + " WeekStartDate: "
           + this.weekStartDate + " DayOfTheWeek: " + this.dayOfTheWeek);
+          console.log(this.todayTimeLeft);
         },100);
 
       });

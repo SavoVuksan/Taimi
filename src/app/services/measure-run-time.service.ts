@@ -12,6 +12,7 @@ export class MeasureRunTimeService {
   constructor() { }
 
   measureTime(){
+
     return this.now = ((new Date().getTime() / 1000) - this.STARTTIME); //Die Zeit zwischen start des Programmes und jetzt in stunden
 
   }

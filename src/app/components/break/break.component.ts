@@ -13,7 +13,7 @@ export class BreakComponent implements OnInit {
   //Basis-Div anzeigen
   base: boolean = true;
   //Div für genommene Pause anzeigen
-  breakTaken: boolean = false;
+  breakTaken: boolean ;
   //Farbe der Tasse beim Basis-Div
   iconColor = true;
   //Pause abbrechen
@@ -27,8 +27,11 @@ export class BreakComponent implements OnInit {
   subscription: Subscription;
   progress: number;
 
-  constructor( private sharedVars: SharedVariablesService ) { 
+  constructor( private sharedVars: SharedVariablesService ) {
     this.progress = 85;
+    this.breakTaken = false;
+
+
   }
 
   ngOnInit() {
@@ -69,6 +72,7 @@ export class BreakComponent implements OnInit {
       let timeRun = this.sharedVars.getRunTime();
       //"Stoppen"
       this.subscription = timer.subscribe(t =>{
+        console.log(this.breakTaken);
         this.sharedVars.setRunTime(timeRun);
         this.sharedVars.setTodayTimeLeft(timeLeft);
         if(this.maxTime <= this.getLeftTimeProgress()){
@@ -86,7 +90,7 @@ export class BreakComponent implements OnInit {
       this.base = true;
       this.terminateBreak = false;
     }
-    
+
   }
 
   //Restliche Zeit der Pause

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { AmazingTimePickerService } from 'amazing-time-picker';
 import { SharedVariablesService } from '../../services/shared-variables.service';
 import { NotificationService } from '../../services/notification.service';
 import * as moment from 'moment';
@@ -39,7 +38,7 @@ export class MemoryComponent implements OnInit {
   //Erinnerung gesetzt
   setMemory: boolean = false;
 
-  constructor(private atp: AmazingTimePickerService, private sharedVars: SharedVariablesService, private notification: NotificationService) { }
+  constructor( private sharedVars: SharedVariablesService, private notification: NotificationService) { }
 
   ngOnInit() {
   }
@@ -99,23 +98,31 @@ export class MemoryComponent implements OnInit {
 
   //Erinnerung speichern
   addMemory(){
-    
+
     this.setMemory = true;
     var reminder = this.remindertext;
     let timer = Observable.timer(0,300);
-    var currentDate  = moment().format("DD-MM-YYYY");    
+    var currentDate  = moment().format("DD-MM-YYYY");
+    var hourmin = this.selectedTime.split(':');
     var memoryTimeString = moment(currentDate+" "+this.selectedTime).format("MM-DD-YYYY hh:mm a");
-    console.log(memoryTimeString);
+    //console.log(memoryTimeString);
     this.close();
     this.subscription = timer.subscribe(t =>{
       //Derzeitige Zeit holen
       var nowString = moment().format("DD-MM-YYYY h:mm a");
       var now = moment(nowString).valueOf();
-      console.log(nowString);
+      var targettime = new Date();
+      var curTime = new Date();
+      targettime.setHours(parseInt(hourmin[0]),parseInt(hourmin[1]),0,0);
+
       //TimeString auf Time ändern
       var memoryTime = moment(memoryTimeString).valueOf();
       //Time mit Now vergleichen
-      if((memoryTime - now)<= 0){
+      //console.log((memoryTime));
+
+      console.log(targettime.getTime() - curTime.getTime());
+      if((targettime.getTime() - curTime.getTime()) <= 0){
+        console.log('memory')
       //Wenn Now gleich oder später als Time ist, Nachricht ausgeben
         this.notification.showSmallNotification("Reminder", reminder);
         console.log("It worked");

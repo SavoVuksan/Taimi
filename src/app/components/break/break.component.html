@@ -17,10 +17,12 @@
   <img src="../../../assets/icons/png/PauseIconBig.png" *ngIf="!iconColor">
 </div>
 <div class="breakTaken" *ngIf="breakTaken" (click)="takeABreak(15)">
+
   <img src="../../../assets/icons/png/PauseIconBig.png">
   <div class="outerBar">
     <div class="innerBar" [style.width]="getProgress()">
-  
+
     </div>
-  </div>  
+  </div>
 </div>
+

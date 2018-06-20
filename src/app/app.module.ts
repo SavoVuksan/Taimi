@@ -30,7 +30,6 @@ import { PointToggleComponent } from './components/point-toggle/point-toggle.com
 import { BreakComponent } from './components/break/break.component';
 import { ProgramService } from './services/program.service';
 import { MemoryComponent } from './components/memory/memory.component';
-import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { WebsitesComponent } from './components/websites/websites.component';
 import {WebsiteService} from './services/website.service';
 import { HttpModule } from '@angular/http';
@@ -65,7 +64,6 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpModule,
-    AmazingTimePickerModule,
     BrowserAnimationsModule
   ],
   providers: [    ElectronService, SharedVariablesService,
