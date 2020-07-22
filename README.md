@@ -14,6 +14,7 @@ Taimi runs with Angular & Electron
 <img src="https://github.com/SavoVuksan/Taimi/blob/master/images/taimi2.PNG" width="400px"/>
 <img src="https://github.com/SavoVuksan/Taimi/blob/master/images/taimi3.PNG" width="400px"/>
 <img src="https://github.com/SavoVuksan/Taimi/blob/master/images/taimi4.PNG" width="400px"/>
+
 ## How to run
 Download the Repo and run the 
 `npm install` command
