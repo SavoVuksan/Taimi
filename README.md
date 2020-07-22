@@ -10,10 +10,10 @@ Taimi was made as a school project by Barbara Kröll, Rezo Black, Bozo Vuksan an
 Taimi runs with Angular & Electron
 
 ## Screenshots
-![Main](https://github.com/SavoVuksan/Taimi/tree/master/images/taimi1.PNG)
-![Main](https://github.com/SavoVuksan/Taimi/tree/master/images/taimi2.PNG)
-![Main](https://github.com/SavoVuksan/Taimi/tree/master/images/taimi3.PNG)
-![Main](https://github.com/SavoVuksan/Taimi/tree/master/images/taimi4.PNG)
+![Main](https://github.com/SavoVuksan/Taimi/blob/master/images/taimi1.PNG)
+![Programms](https://github.com/SavoVuksan/Taimi/blob/master/images/taimi2.PNG)
+![Websites](https://github.com/SavoVuksan/Taimi/blob/master/images/taimi3.PNG)
+![Settings](https://github.com/SavoVuksan/Taimi/blob/master/images/taimi4.PNG)
 ## How to run
 Download the Repo and run the 
 `npm install` command
